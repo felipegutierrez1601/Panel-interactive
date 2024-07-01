@@ -1,0 +1,7 @@
+# Entornos virtuales
+UBB_Arauco_panel/
+venv/
+
+# Archivos de compilación de Python
+*.pyc
+__pycache__/
