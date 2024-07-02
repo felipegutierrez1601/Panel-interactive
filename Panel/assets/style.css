@@ -1,0 +1,434 @@
+.SIDEBAR_STYLE {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 1px 1px;
+    background: #091D4B;
+    list-style-type: none;
+    display: flex;
+}
+
+.SIDEBAR_EMERG {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom : 0;
+	width : 15%;
+	padding : 15px 10px;
+	background: #254D32
+}
+
+.nombre_proyecto{
+	position: absolute;
+	margin-left:630px;
+	margin-top: 615px;
+	color: #696158;
+	font-size: 15px;
+	font-family: Arimo 
+}
+
+.numero_proyecto{
+	position: absolute;
+	margin-left:630px;
+	margin-top: 650px;
+	color: #696158;
+	font-size: 15px;
+	font-family: Arimo 
+}
+
+.codigo_proyecto{
+	position: absolute;
+	margin-left:1300px;
+	margin-top: 650px;
+	color: #696158;
+	font-size: 13px;
+	font-family: Arimo 
+}
+
+.custom-datepicker {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.TABS{
+	font-family: Arimo;
+	color: #254D32;
+	font-size: 13px;
+}
+
+.CONTENT_STYLE {
+	margin-left: 566px;
+	margin-right: 0px;
+	margin-top: 15px;
+	background-image:url("/assets/fondo_general.png");
+	background-size: 800px 300px;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 347px;
+	width: 952px;
+	background-color: #091D4B;
+	--positionX: 0;
+	--positionY: 0;
+}
+
+
+.INDICADOR_CONTENT_0_1 {
+	position: absolute;
+	margin-left: 15px;
+	margin-right: 0%;
+	margin-top: 40px;
+	height: 3px;
+	width: 5px;
+	background-color: #29304C;
+}
+
+.TITULO_PROCESO {
+	text-align: center;
+	font-family : "Open Sans", sans-serif;
+	color: #F49D37;
+	font-size: 20px;
+}
+
+.TITULO_BARRA {
+	position: relative;
+	left: 1%;
+	margin: 0;
+	text-align: center;
+	font-family : "Open Sans", sans-serif;
+	color: #E4E95A;
+	font-size: 20px;
+	
+	width: 25%;
+	top: 8px;
+}
+
+
+.Logo_UBB{
+	position: absolute;
+	left: 10%;
+	background-image:url("/assets/UBB full.png");
+	background-size: 130px 85px;
+	background-repeat:no-repeat;
+	background-position: left;
+	margin-top: 605px;
+	height: 100px;
+	width: 330px;
+}
+
+.Logo_Arauco{
+	position: absolute;
+	left: 22%;
+	background-image:url("/assets/Arauco.png");
+	background-size: 130px 20px;
+	background-repeat:no-repeat;
+	background-position: left;
+	margin-top: 605px;
+	height: 100px;
+	width: 330px;
+}
+
+.Logo_ANID{
+	position: absolute;
+	left: 35%;
+	background-image:url("/assets/ANID.png");
+	background-size: 70px 65px;
+	background-repeat:no-repeat;
+	background-position: left;
+	margin-top: 605px;
+	height: 100px;
+	width: 330px;
+}
+
+.CAJAS {
+	display: flex;
+	margin-top: 0;
+	font-family: Arimo ;
+	text-align: center;
+	font-size: 10px;
+	margin-left: 0px;
+	color: #000000;
+}
+
+.INDICADOR_1 {
+	position: absolute;
+	margin-left: 15px;
+	margin-right: 0%;
+	margin-top: -347px;
+	height: 347px;
+	width: 537px;
+	background-color: #091D4B;
+}
+
+.INDICADOR_1_1 {
+	text-align: left;
+	position: absolute;
+	margin-left: 120px;
+	margin-right: 0%;
+	margin-top: 5px;
+}
+
+.INDICADOR_1_2 {
+	text-align: left;
+	position: absolute;
+	margin-left: 10px;
+	margin-right: 0%;
+	margin-top: 20px;
+	width: 200px;
+	font-size: 13px;
+	color: #254D32;
+}
+
+.INDICADOR_2 {
+	position: absolute;
+	margin-left: 15px;
+	margin-right: 2px;
+	margin-top: 15px;
+	height: 285px;
+	width:1504px;
+	background-color: #091D4B;
+}
+
+
+.INDICADOR_2_1 {
+	text-align: left;
+	position: absolute;
+	margin-left: 2%;
+	margin-right: 5%;
+	margin-top: 50px
+}
+
+.INDICADOR_2_2 {
+	text-align: left;
+	position: absolute;
+	margin-left: 270px;
+	margin-right: 0%;
+	margin-top: 20px
+
+}
+
+.INDICADOR_2_3 {
+	text-align: left;
+	position: absolute;
+	margin-left: 270px;
+	margin-right: 0%;
+	margin-top: 170px;
+}
+
+.ALERT_INDICADOR_2_2 {
+	text-align: left;
+	position: absolute;
+	margin-left: 390px;
+	margin-right: 0%;
+	margin-top: 40px
+}
+
+.ALERT_INDICADOR_2_3 {
+	text-align: left;
+	position: absolute;
+	margin-left: 390px;
+	margin-right: 0%;
+	margin-top: 190px
+}
+
+
+
+
+.SIDEBAR_MACERADO {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom : 0;
+	width : 15%;
+	padding : 15px 10px;
+	background: '#D3B417';
+}
+
+.INDICADOR_MACERADO_1 {
+	position: absolute;
+	margin-left: 1%;
+	margin-right: 5%;
+	margin-top: 10px;
+	height: 250px;
+	width: 740px;
+	background-color: #F3E9D2;
+}
+
+.INDICADOR_MACERADO_2 {
+	position: absolute;
+	margin-left: 770px;
+	margin-right: 5%;
+	margin-top: 10px;
+	height: 250px;
+	width: 480px;
+	background-color: #F3E9D2;
+}
+
+.INDICADOR_MACERADO_3 {
+	position: absolute;
+	margin-left: 1%;
+	margin-right: 5%;
+	margin-top: 280px;
+	height: 270px;
+	width: 1235px;
+	background-color: #F3E9D2;
+}
+
+
+.SIDEBAR_DEBOBINADO {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom : 0;
+	width : 15%;
+	padding : 15px 10px;
+	background: #ECA586;
+}
+
+.INDICADOR_DEBOBINADO_1 {
+	position: absolute;
+	margin-left: 1%;
+	margin-right: 5%;
+	margin-top: 10px;
+	height: 250px;
+	width: 840px;
+	background-color: #F3E9D2;
+	overflow-x: auto;
+	overflow-y:hidden;
+}
+
+.INDICADOR_DEBOBINADO_2 {
+	position: absolute;
+	margin-left: 870px;
+	margin-right: 5%;
+	margin-top: 10px;
+	height: 250px;
+	width: 380px;
+	background-color: #F3E9D2;
+}
+
+.INDICADOR_DEBOBINADO_3 {
+	position: absolute;
+	margin-left: 1%;
+	margin-right: 5%;
+	margin-top: 280px;
+	height: 270px;
+	width: 1235px;
+	background-color: #F3E9D2;
+}
+
+.SIDEBAR_SECADO {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom : 0;
+	width : 15%;
+	padding : 15px 10px;
+	background: #3F427A;
+}
+.INDICADOR_SECADO_1 {
+	position: absolute;
+	margin-left: 1%;
+	margin-right: 5%;
+	margin-top: 10px;
+	height: 250px;
+	width: 840px;
+	background-color: #F3E9D2;
+	overflow-x: auto;
+	overflow-y:hidden;
+}
+.INDICADOR_SECADO_2 {
+	position: absolute;
+	margin-left: 870px;
+	margin-right: 5%;
+	margin-top: 10px;
+	height: 250px;
+	width: 380px;
+	background-color: #F3E9D2;
+}
+
+.INDICADOR_SECADO_3 {
+	position: absolute;
+	margin-left: 1%;
+	margin-right: 5%;
+	margin-top: 280px;
+	height: 270px;
+	width: 1235px;
+	background-color: #F3E9D2;
+}
+
+.SIDEBAR_ENCOLADO {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom : 0;
+	width : 15%;
+	padding : 15px 10px;
+	background: #273627;
+}
+
+.recomendacion_card_1 {
+	position: absolute;
+	margin-left: calc((100% - 1240px) / 2);
+	margin-right: 5%;
+	margin-top: 7%;
+	height: 150px;
+	width: 300px;
+	background-color: #696158;
+	overflow-x: auto;
+	overflow-y:hidden;
+}
+
+.recomendacion_card_2 {
+	position: absolute;
+	margin-left: calc((100% - 1240px) / 2 + 320px);
+	margin-right: 5%;
+	margin-top: 7%;
+	height: 150px;
+	width: 300px;
+	background-color: #696158;
+}
+
+.recomendacion_card_3 {
+	position: absolute;
+	margin-left: calc((100% - 1240px) / 2 + 640px);
+	margin-right: 5%;
+	margin-top: 7%;
+	height: 150px;
+	width: 300px;
+	background-color: #696158;
+}
+
+.recomendacion_card_4 {
+	position: absolute;
+	margin-left: calc((100% - 1240px) / 2 + 960px);
+	margin-right: 5%;
+	margin-top: 7%;
+	height: 150px;
+	width: 300px;
+	background-color: #696158;
+}
+
+.recomendacion_card_5 {
+	position: absolute;
+	margin-left: calc((100% - 1240px) / 2);
+	margin-right: 0px;
+	margin-top: 275px;
+	height: 300px;
+	width: 1260px;
+	background-color: #696158;
+}
+
+circle.track {
+stroke-width: 15px;
+r:5;
+stroke-dasharray: 1108;
+stroke: rgb(94, 92, 92)!important;
+background-image: radial-gradient(red, green, blue);
+}
+
+
+

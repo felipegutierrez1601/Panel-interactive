@@ -4,6 +4,7 @@ from data_loader import load_data
 
 def create_layout(app):
     df = load_data()
+    
     fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
 
     return html.Div(children=[
