@@ -11,6 +11,7 @@ class MyDashapp:
     def __init__(self):
         self.app = Dash(external_stylesheets=[dbc.themes.SOLAR])
         load_figure_template("SOLAR")
+        
 
         # Configurar el diseño de la aplicación (puedes elegir el layout que desees)
         self.app.layout = create_layout(self.app)

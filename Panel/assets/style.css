@@ -19,10 +19,63 @@
 	background: #254D32
 }
 
+.recomendacion_card_1 {
+	position: absolute;
+	margin-left: calc((100% - 1440px) / 2);
+	margin-right: 5%;
+	margin-top: 7%;
+	height: 320px;
+	width: 350px;
+	background-color: #696158;
+	overflow-y:hidden;
+}
+
+.recomendacion_card_2 {
+	position: absolute;
+	margin-left: calc((100% - 1440px) / 2 + 370px);
+	margin-right: 5%;
+	margin-top: 7%;
+	height: 320px;
+	width: 350px;
+	background-color: #696158;
+}
+
+.recomendacion_card_3 {
+	position: absolute;
+	margin-left: calc((100% - 1440px) / 2 + 740px);
+	margin-right: 5%;
+	margin-top: 7%;
+	height: 320px;
+	width: 350px;
+	background-color: #696158;
+}
+
+.recomendacion_card_4 {
+	position: absolute;
+	margin-left: calc((100% - 1440px) / 2 + 1110px);
+	margin-right: 5%;
+	margin-top: 7%;
+	height: 320px;
+	width: 350px;
+	background-color: #696158;
+}
+
+.recomendacion_card_5{
+	position: absolute;
+	margin-left: calc((100% - 1440px) / 2);
+	margin-right: 0px;
+	margin-top: 450px;
+	height: 300px;
+	width: 1460px;
+	background-color: #696158;
+}
+
+
+
 .nombre_proyecto{
 	position: absolute;
 	margin-left:630px;
-	margin-top: 615px;
+	margin-top: 780px;
 	color: #696158;
 	font-size: 15px;
 	font-family: Arimo 
@@ -31,7 +84,7 @@
 .numero_proyecto{
 	position: absolute;
 	margin-left:630px;
-	margin-top: 650px;
+	margin-top: 800px;
 	color: #696158;
 	font-size: 15px;
 	font-family: Arimo 
@@ -40,18 +93,185 @@
 .codigo_proyecto{
 	position: absolute;
 	margin-left:1300px;
-	margin-top: 650px;
+	margin-top: 800px;
 	color: #696158;
 	font-size: 13px;
 	font-family: Arimo 
 }
 
-.custom-datepicker {
-    width: 200px;
-    height: 30px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
+.Logo_UBB{
+	position: absolute;
+	left: 5%;
+	background-image:url("/assets/UBB full.png");
+	background-size: 130px 85px;
+	background-repeat:no-repeat;
+	background-position: left;
+	margin-top: 750px;
+	height: 100px;
+	width: 330px;
+}
+
+.Logo_Arauco{
+	position: absolute;
+	left: 17%;
+	background-image:url("/assets/Arauco.png");
+	background-size: 130px 20px;
+	background-repeat:no-repeat;
+	background-position: left;
+	margin-top: 750px;
+	height: 100px;
+	width: 330px;
+}
+
+.Logo_ANID{
+	position: absolute;
+	left: 30%;
+	background-image:url("/assets/ANID.png");
+	background-size: 70px 65px;
+	background-repeat:no-repeat;
+	background-position: left;
+	margin-top: 750px;
+	height: 100px;
+	width: 330px;
+}
+
+.custom-datepicker .DateInput {
+    border: none; /* Elimina el borde */
+    background-color: transparent; /* Elimina el fondo */
+}
+
+.custom-datepicker .DateInput_input {
+    color: #333; /* Color del texto */
+    font-size: 17px;
+    border: none; /* Elimina el borde del input */
+    box-shadow: none; /* Elimina el sombreado */
+    padding: 5px; /* Ajusta el padding si es necesario */
+}
+
+.custom-datepicker .DateInput_input__focused {
+    border: none; /* Elimina el borde cuando está enfocado */
+    box-shadow: none; /* Elimina el sombreado cuando está enfocado */
+}
+
+.custom-datepicker .SingleDatePicker_picker {
+    z-index: 999; /* Asegura que el calendario se muestre encima de otros elementos */
+}
+
+.custom-datepicker .CalendarDay__default {
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #333;
+}
+
+.custom-datepicker .CalendarDay__hover {
+    background: #e6e6e6;
+    border: 1px solid #b3b3b3;
+    color: #333;
+}
+
+.custom-datepicker{
+    margin-left:90px;
+    margin-top:130px;
+}
+
+
+.custom-datepicker2 .DateInput {
+    border: none; /* Elimina el borde */
+    background-color: transparent; /* Elimina el fondo */
+}
+
+.custom-datepicker2 .DateInput_input {
+    color: #333; /* Color del texto */
+    font-size: 17px;
+    border: none; /* Elimina el borde del input */
+    box-shadow: none; /* Elimina el sombreado */
+    padding: 5px; /* Ajusta el padding si es necesario */
+}
+
+.custom-datepicker2 .DateInput_input__focused {
+    border: none; /* Elimina el borde cuando está enfocado */
+    box-shadow: none; /* Elimina el sombreado cuando está enfocado */
+}
+
+.custom-datepicker2 .SingleDatePicker_picker {
+    z-index: 999; /* Asegura que el calendario se muestre encima de otros elementos */
+}
+
+.custom-datepicker2 .CalendarDay__default {
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #333;
+}
+
+.custom-datepicker2 .CalendarDay__hover {
+    background: #e6e6e6;
+    border: 1px solid #b3b3b3;
+    color: #333;
+}
+
+.custom-datepicker2{
+    margin-left:12px;
+    margin-top:230px;
+}
+
+.custom-range-slider .rc-slider {
+    width: 18%; /* Cambia el tamaño del deslizador */
+    margin-left:70px;
+    margin-top:70px;
+}
+
+/* Estilo para las marcas del RangeSlider */
+.custom-range-slider .rc-slider-mark-text {
+    font-size: 12px; /* Cambia el tamaño del texto de las marcas */
+    color: #DFD1A7; /* Cambia el color del texto de las marcas */
+}
+
+/* Estilo para los manejadores del RangeSlider */
+.custom-range-slider .rc-slider-handle {
+    border-color: #000000; /* Cambia el color del borde del manejador */
+    height: 15px; /* Cambia la altura del manejador */
+    width: 15px; /* Cambia el ancho del manejador */
+    margin-top: -4px; /* Ajusta la posición vertical del manejador */
+    background-color: #897F74; /* Cambia el color de fondo del manejador */
+}
+
+/* Estilo para la pista del RangeSlider */
+.custom-range-slider .rc-slider-track {
+    background-color: #BDB0A2; /* Cambia el color de la pista */
+    height: 6px; /* Cambia la altura de la pista */
+}
+
+/* Estilo para la pista restante del RangeSlider */
+.custom-range-slider .rc-slider-rail {
+    background-color: #ddd; /* Cambia el color de la pista restante */
+    height: 6px; /* Cambia la altura de la pista restante */
+}
+
+.nombre_fecha{
+	position: absolute;
+	margin-left:200px;
+	margin-top: -180px;
+	color: #DFD1A7;
+	font-size: 20px;
+	font-family: Arimo 
+}
+
+.nombre_hora{
+	position: absolute;
+	margin-left:210px;
+	margin-top: -80px;
+	color: #DFD1A7;
+	font-size: 20px;
+	font-family: Arimo 
+}
+
+.nombre_chapa{
+	position: absolute;
+	margin-left:505px;
+	margin-top: -260px;
+	color: #DFD1A7;
+	font-size: 30px;
+	font-family: Arimo 
 }
 
 .TABS{
@@ -107,41 +327,6 @@
 }
 
 
-.Logo_UBB{
-	position: absolute;
-	left: 10%;
-	background-image:url("/assets/UBB full.png");
-	background-size: 130px 85px;
-	background-repeat:no-repeat;
-	background-position: left;
-	margin-top: 605px;
-	height: 100px;
-	width: 330px;
-}
-
-.Logo_Arauco{
-	position: absolute;
-	left: 22%;
-	background-image:url("/assets/Arauco.png");
-	background-size: 130px 20px;
-	background-repeat:no-repeat;
-	background-position: left;
-	margin-top: 605px;
-	height: 100px;
-	width: 330px;
-}
-
-.Logo_ANID{
-	position: absolute;
-	left: 35%;
-	background-image:url("/assets/ANID.png");
-	background-size: 70px 65px;
-	background-repeat:no-repeat;
-	background-position: left;
-	margin-top: 605px;
-	height: 100px;
-	width: 330px;
-}
 
 .CAJAS {
 	display: flex;
@@ -150,7 +335,7 @@
 	text-align: center;
 	font-size: 10px;
 	margin-left: 0px;
-	color: #000000;
+	color: #DFD1A7;
 }
 
 .INDICADOR_1 {
@@ -370,56 +555,6 @@
 	background: #273627;
 }
 
-.recomendacion_card_1 {
-	position: absolute;
-	margin-left: calc((100% - 1240px) / 2);
-	margin-right: 5%;
-	margin-top: 7%;
-	height: 150px;
-	width: 300px;
-	background-color: #696158;
-	overflow-x: auto;
-	overflow-y:hidden;
-}
-
-.recomendacion_card_2 {
-	position: absolute;
-	margin-left: calc((100% - 1240px) / 2 + 320px);
-	margin-right: 5%;
-	margin-top: 7%;
-	height: 150px;
-	width: 300px;
-	background-color: #696158;
-}
-
-.recomendacion_card_3 {
-	position: absolute;
-	margin-left: calc((100% - 1240px) / 2 + 640px);
-	margin-right: 5%;
-	margin-top: 7%;
-	height: 150px;
-	width: 300px;
-	background-color: #696158;
-}
-
-.recomendacion_card_4 {
-	position: absolute;
-	margin-left: calc((100% - 1240px) / 2 + 960px);
-	margin-right: 5%;
-	margin-top: 7%;
-	height: 150px;
-	width: 300px;
-	background-color: #696158;
-}
-
-.recomendacion_card_5 {
-	position: absolute;
-	margin-left: calc((100% - 1240px) / 2);
-	margin-right: 0px;
-	margin-top: 275px;
-	height: 300px;
-	width: 1260px;
-	background-color: #696158;
 }
 
 circle.track {
