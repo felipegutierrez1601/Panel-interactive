@@ -19,6 +19,32 @@
 	background: #254D32
 }
 
+.link-container {
+	position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 510px; /* Ajusta el margen superior según sea necesario */
+}
+
+.link {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    transition: font-size 0.3s ease;
+    margin: 20px; /* Espacio entre los enlaces */
+}
+
+.link.selected {
+    font-size: 30px;
+    color: blue;
+}
+
+/* Ajuste para alinear los links no seleccionados */
+.link:not(.selected) {
+    order: 1;
+}
+
 .recomendacion_card_1 {
 	position: absolute;
 	margin-left: calc((100% - 1440px) / 2);
@@ -66,7 +92,17 @@
 	margin-right: 0px;
 	margin-top: 450px;
 	height: 300px;
-	width: 1460px;
+	width: 720px;
+	background-color: #696158;
+}
+
+.recomendacion_card_6{
+	position: absolute;
+	margin-left: calc((100% - 1440px) / 2 + 740px);
+	margin-right: 0px;
+	margin-top: 450px;
+	height: 300px;
+	width: 720px;
 	background-color: #696158;
 }
 
@@ -273,6 +309,114 @@
 	font-size: 30px;
 	font-family: Arimo 
 }
+
+.Aprobado_chapa{
+	position: absolute;
+	margin-left:470px;
+	margin-top: -170px;
+	color: #DFD1A7;
+	font-size: 18px;
+	font-family: Arimo 
+}
+
+.objetivo_chapa{
+	position: absolute;
+	margin-left:490px;
+	margin-top: -200px;
+	color: #DFD1A7;
+	font-size: 16px;
+	font-family: Arimo 
+}
+
+.Revisar_chapa{
+	position: absolute;
+	margin-left:630px;
+	margin-top: -177px;
+	color: #DFD1A7;
+	font-size: 20px;
+	font-family: Arimo 
+}
+
+.nombre_tablero{
+	position: absolute;
+	margin-left:865px;
+	margin-top: -260px;
+	color: #DFD1A7;
+	font-size: 30px;
+	font-family: Arimo 
+}
+
+.Rechazo_tablero{
+	position: absolute;
+	margin-left:840px;
+	margin-top: -170px;
+	color: #DFD1A7;
+	font-size: 18px;
+	font-family: Arimo 
+}
+
+.objetivo_tablero{
+	position: absolute;
+	margin-left:855px;
+	margin-top: -200px;
+	color: #DFD1A7;
+	font-size: 16px;
+	font-family: Arimo 
+}
+
+.Revisar_tablero{
+	position: absolute;
+	margin-left:1000px;
+	margin-top: -177px;
+	color: #DFD1A7;
+	font-size: 20px;
+	font-family: Arimo 
+}
+
+.nombre_meta{
+	position: absolute;
+	margin-left:1300px;
+	margin-top: -260px;
+	color: #DFD1A7;
+	font-size: 30px;
+	font-family: Arimo 
+}
+
+.Aprobado_meta{
+	position: absolute;
+	margin-left:1205px;
+	margin-top: -170px;
+	color: #DFD1A7;
+	font-size: 18px;
+	font-family: Arimo 
+}
+
+.objetivo_meta{
+	position: absolute;
+	margin-left:1220px;
+	margin-top: -200px;
+	color: #DFD1A7;
+	font-size: 16px;
+	font-family: Arimo 
+}
+
+.Revisar_meta{
+	position: absolute;
+	margin-left:1365px;
+	margin-top: -177px;
+	color: #DFD1A7;
+	font-size: 20px;
+	font-family: Arimo 
+}
+
+.grafico_cantidad_kpi{
+	position: absolute;
+	margin-left:150px;
+	margin-top: 100px;
+	color: #DFD1A7;
+}
+
+
 
 .TABS{
 	font-family: Arimo;
