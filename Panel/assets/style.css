@@ -1,3 +1,184 @@
+.principal_card_1 {
+	position: absolute;
+	margin-left: calc((100% - 1440px) / 2);
+	margin-right: 5%;
+	margin-top: 6%;
+	height: 320px;
+	width: 720px;
+	background-color: #FFFFFF;
+	overflow-y:hidden;
+	border-width: 3px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: #000000; /* Ajusta el color según sea necesario */
+}
+
+.principal_card_2 {
+	position: absolute;
+	margin-left: calc((100% - 1440px) / 2 + 740px);
+	margin-right: 5%;
+	margin-top: 6%;
+	height: 320px;
+	width: 720px;
+	background-color:#FFFFFF;
+	border-width: 3px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: #000000; /* Ajusta el color según sea necesario */
+}
+
+.principal_card_3 {
+	position: absolute;
+	margin-left: calc((100% - 1440px) / 2);
+	margin-right: 5%;
+	margin-top: 425px;
+	height: 320px;
+	width: 720px;
+	background-color:#FFFFFF;
+	border-width: 3px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: #000000; /* Ajusta el color según sea necesario */
+}
+
+.principal_card_4 {
+	position: absolute;
+	margin-left: calc((100% - 1440px) / 2 + 740px);
+	margin-right: 5%;
+	margin-top: 425px;
+	height: 320px;
+	width: 720px;
+	background-color: #FFFFFF;
+	border-width: 3px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: #000000;/* Ajusta el color según sea necesario */
+}
+
+.mace_torno {
+	position: absolute;
+	margin-top: 0px;
+    font-size: 30px;
+    font-family: Arimo; 
+    text-decoration: none;
+    margin-left: 250px;
+    
+    color: #000000;
+}
+
+.mace_torno_div {
+	position: absolute;
+	margin-top: 0px;
+	background: #9AC4EE;
+	width: 715px;
+	height: 15%;
+	border-bottom: 1px solid black;
+    
+}
+
+._recomendacion {
+	position: absolute;
+	margin-top: 60px;
+    font-size: 20px;
+    font-family: Arimo; 
+    text-decoration: none;
+    margin-left: 270px;
+    color: #000000;
+    background-color: #D6D6D6; /* Fondo celeste */
+    border-radius: 15px; /* Esquinas curvas */
+    border: 2px solid #000000;
+    padding: 10px 10px;
+}
+
+._simulacion {
+	position: absolute;
+	margin-top: 150px;
+    font-size: 20px;
+    font-family: Arimo; 
+    text-decoration: none;
+    margin-left: 270px;
+    color: #000000;
+    background-color: #D6D6D6; /* Fondo celeste */
+    border-radius: 15px; /* Esquinas curvas */
+    border: 2px solid #000000;
+    padding: 10px 28px;
+}
+
+
+._refuerzo {
+	position: absolute;
+	margin-top: 240px;
+    font-size: 20px;
+    font-family: Arimo; 
+    text-decoration: none;
+    margin-left: 270px;
+    color: #000000;
+    background-color: #D6D6D6; /* Fondo celeste */
+    border-radius: 15px; /* Esquinas curvas */
+    border: 2px solid #000000;
+    padding: 10px 37px;
+}
+
+.secado {
+	margin-top: 0px;
+    font-size: 30px;
+    font-family: Arimo; 
+    text-decoration: none;
+    margin-left: 300px;
+    
+    color: #000000;
+}
+
+.secado_div {
+	position: absolute;
+	margin-top: 0px;
+	background: #9AC4EE;
+	width: 715px;
+	height: 15%;
+	border-bottom: 1px solid black;
+    
+}
+
+
+
+
+.encolado {
+	margin-top: 0px;
+    font-size: 30px;
+    font-family: Arimo; 
+    text-decoration: none;
+    margin-left: 300px;
+    
+    color: #000000;
+}
+
+.encolado_div {
+	position: absolute;
+	margin-top: 0px;
+	background: #9AC4EE;
+	width: 715px;
+	height: 15%;
+	border-bottom: 1px solid black;
+    
+}
+
+.prensa{
+	margin-top: 0px;
+    font-size: 30px;
+    font-family: Arimo; 
+    text-decoration: none;
+    margin-left: 260px;
+    
+    color: #000000;
+}
+
+.prensa_div {
+	position: absolute;
+	margin-top: 0px;
+	background: #9AC4EE;
+	width: 715px;
+	height: 15%;
+	border-bottom: 1px solid black;
+    
+}
+
+
 .SIDEBAR_STYLE {
     top: 0;
     left: 0;
@@ -19,91 +200,154 @@
 	background: #254D32
 }
 
+.icon-link {
+    position: absolute;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+.icon-link img {
+	position: absolute;
+    width: 30px;  /* Ajusta el tamaño de la imagen según sea necesario */
+    height:30px;
+    background-repeat:no-repeat;
+	background-position: left;
+}
+
 .link-container {
 	position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 510px; /* Ajusta el margen superior según sea necesario */
+    margin-left: 0px; /* Ajusta el margen superior según sea necesario */
+    margin-top: 0px; /* Ajusta el margen superior según sea necesario */
+    border-width: 1px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: black; /* Ajusta el color según sea necesario */
+    width: 1536px;
+    height: 5%;
+    background-color: #9AC4EE;
+
 }
+
 
 .link {
-    font-size: 20px;
-    text-decoration: none;
-    color: black;
-    transition: font-size 0.3s ease;
-    margin: 20px; /* Espacio entre los enlaces */
+	position: absolute;
+    font-size: 1px;
+    font-family: Scene; 
+    color: #C0C6C3;
+    margin-top:2px ;
+    padding: 2px 5px;
+    background-color: #9AC4EE; /* Fondo celeste */
+    border-radius: 15px; /* Esquinas curvas */
+    border: 2px solid #000000;
+     
 }
 
-.link.selected {
-    font-size: 30px;
-    color: blue;
+.link2 {
+	position: absolute;
+    font-size: 1px;
+    margin-left: 100px;
+    font-family: Scene; 
+    margin-top:2px;
+    padding: 2px 5px;
+    background-color: #FFFFFF; /* Fondo celeste */
+    border-radius: 15px; /* Esquinas curvas */
+    border: 2px solid #000000;
 }
 
-/* Ajuste para alinear los links no seleccionados */
-.link:not(.selected) {
-    order: 1;
-}
+
+
 
 .recomendacion_card_1 {
 	position: absolute;
-	margin-left: calc((100% - 1440px) / 2);
-	margin-right: 5%;
-	margin-top: 7%;
-	height: 320px;
-	width: 350px;
-	background-color: #696158;
+	margin-left: 2%;
+	margin-top: 3%;
+	height: 250px;
+	width: 300px;
+	margin-right: 1%;
+	background-color: #FFFFFF;
 	overflow-y:hidden;
+	border: none;
 }
 
 .recomendacion_card_2 {
 	position: absolute;
-	margin-left: calc((100% - 1440px) / 2 + 370px);
+	margin-left: 400px;
 	margin-right: 5%;
-	margin-top: 7%;
-	height: 320px;
-	width: 350px;
-	background-color: #696158;
+	margin-top: 3%;
+	height: 200px;
+	width: 380px;
+	background-color: #FFFFFF;
+	border-width: 1px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: black; /* Ajusta el color según sea necesario */
 }
 
 .recomendacion_card_3 {
 	position: absolute;
 	margin-left: calc((100% - 1440px) / 2 + 740px);
 	margin-right: 5%;
-	margin-top: 7%;
-	height: 320px;
-	width: 350px;
-	background-color: #696158;
+	margin-top: 3%;
+	height: 200px;
+	width: 380px;
+	background-color: #FFFFFF;
+	border-width: 1px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: black; /* Ajusta el color según sea necesario */
 }
 
 .recomendacion_card_4 {
 	position: absolute;
-	margin-left: calc((100% - 1440px) / 2 + 1110px);
+	margin-left: calc((100% - 1440px) / 2 + 1130px);
 	margin-right: 5%;
-	margin-top: 7%;
-	height: 320px;
+	margin-top: 3%;
+	height: 200px;
 	width: 350px;
-	background-color: #696158;
+	background-color: #FFFFFF;
+	border-width: 1px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: black; /* Ajusta el color según sea necesario */
+}
+
+.vertical-line {
+    position: absolute;
+    left: 23%;
+    top: 6%;
+    width: 3px; /* Ajusta el grosor de la línea según sea necesario */
+    height: 75vh; /* 50% de la altura de la ventana */
+    background-color: black;
+}
+
+.horizontal-line {
+    position: absolute;
+    left: 1%;  /* Margen izquierdo del 5% */
+    right: 1%; /* Margen derecho del 5% */
+    top: 39%; /* Ajusta esta propiedad según sea necesario para la posición vertical */
+    height: 2px; /* Ajusta el grosor de la línea según sea necesario */
+    background-color: black;
 }
 
 .recomendacion_card_5{
 	position: absolute;
-	margin-left: calc((100% - 1440px) / 2);
+	margin-left: 0.5%;
 	margin-right: 0px;
-	margin-top: 450px;
-	height: 300px;
-	width: 720px;
-	background-color: #696158;
+	margin-top: 350px;
+	height: 350px;
+	width: 330px;
+	background-color: #FFFFFF;
+	border-width: 1px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: black; /* Ajusta el color según sea necesario */
 }
 
 .recomendacion_card_6{
 	position: absolute;
-	margin-left: calc((100% - 1440px) / 2 + 740px);
+	margin-left: 365px;
 	margin-right: 0px;
-	margin-top: 450px;
-	height: 300px;
-	width: 720px;
-	background-color: #696158;
+	margin-top: 260px;
+	height: 450px;
+	width: 1165px;
+	background-color: #FFFFFF;
+	border: none;
+	
 }
 
 
@@ -112,7 +356,7 @@
 	position: absolute;
 	margin-left:630px;
 	margin-top: 780px;
-	color: #696158;
+	color: #000000;
 	font-size: 15px;
 	font-family: Arimo 
 }
@@ -121,7 +365,7 @@
 	position: absolute;
 	margin-left:630px;
 	margin-top: 800px;
-	color: #696158;
+	color: #000000;
 	font-size: 15px;
 	font-family: Arimo 
 }
@@ -130,7 +374,7 @@
 	position: absolute;
 	margin-left:1300px;
 	margin-top: 800px;
-	color: #696158;
+	color: #000000;
 	font-size: 13px;
 	font-family: Arimo 
 }
@@ -206,17 +450,18 @@
 }
 
 .custom-datepicker{
-    margin-left:90px;
-    margin-top:130px;
+	position: absolute;
+    margin-left:33px;
+    margin-top:80px;
 }
 
 
-.custom-datepicker2 .DateInput {
+.custom-datepicker_2 .DateInput {
     border: none; /* Elimina el borde */
     background-color: transparent; /* Elimina el fondo */
 }
 
-.custom-datepicker2 .DateInput_input {
+.custom-datepicker_2 .DateInput_input {
     color: #333; /* Color del texto */
     font-size: 17px;
     border: none; /* Elimina el borde del input */
@@ -224,42 +469,46 @@
     padding: 5px; /* Ajusta el padding si es necesario */
 }
 
-.custom-datepicker2 .DateInput_input__focused {
+.custom-datepicker_2 .DateInput_input__focused {
     border: none; /* Elimina el borde cuando está enfocado */
     box-shadow: none; /* Elimina el sombreado cuando está enfocado */
 }
 
-.custom-datepicker2 .SingleDatePicker_picker {
+.custom-datepicker_2 .SingleDatePicker_picker {
     z-index: 999; /* Asegura que el calendario se muestre encima de otros elementos */
 }
 
-.custom-datepicker2 .CalendarDay__default {
+.custom-datepicker_2 .CalendarDay__default {
     border: 1px solid #ddd;
     background: #fff;
     color: #333;
 }
 
-.custom-datepicker2 .CalendarDay__hover {
+.custom-datepicker_2 .CalendarDay__hover {
     background: #e6e6e6;
     border: 1px solid #b3b3b3;
     color: #333;
 }
 
-.custom-datepicker2{
-    margin-left:12px;
-    margin-top:230px;
+.custom-datepicker_2{
+
+	position:absolute;
+    margin-left:30px;
+    margin-top:0px;
+    width: 10px;
 }
 
 .custom-range-slider .rc-slider {
     width: 18%; /* Cambia el tamaño del deslizador */
-    margin-left:70px;
-    margin-top:70px;
+    margin-left:-10px;
+    margin-top:150px;
+    width: 270px;
 }
 
 /* Estilo para las marcas del RangeSlider */
 .custom-range-slider .rc-slider-mark-text {
     font-size: 12px; /* Cambia el tamaño del texto de las marcas */
-    color: #DFD1A7; /* Cambia el color del texto de las marcas */
+    color: color: #000000; /* Cambia el color del texto de las marcas */
 }
 
 /* Estilo para los manejadores del RangeSlider */
@@ -285,135 +534,220 @@
 
 .nombre_fecha{
 	position: absolute;
-	margin-left:200px;
-	margin-top: -180px;
-	color: #DFD1A7;
+	margin-left:120px;
+	margin-top: 0px;
+	color: #000000;
 	font-size: 20px;
 	font-family: Arimo 
 }
 
 .nombre_hora{
 	position: absolute;
-	margin-left:210px;
-	margin-top: -80px;
-	color: #DFD1A7;
+	margin-left:125px;
+	margin-top: 110px;
+	color: #000000;
 	font-size: 20px;
 	font-family: Arimo 
 }
 
 .nombre_chapa{
 	position: absolute;
-	margin-left:505px;
-	margin-top: -260px;
-	color: #DFD1A7;
+	margin-left:100px;
+	margin-top: 0px;
+	color: #000000;
 	font-size: 30px;
 	font-family: Arimo 
 }
 
 .Aprobado_chapa{
 	position: absolute;
-	margin-left:470px;
-	margin-top: -170px;
-	color: #DFD1A7;
+	margin-left:45px;
+	margin-top: 105px;
 	font-size: 18px;
-	font-family: Arimo 
+	font-family: Scene;
+	color: #FFFFFF
 }
 
 .objetivo_chapa{
 	position: absolute;
-	margin-left:490px;
-	margin-top: -200px;
-	color: #DFD1A7;
+	margin-left:65px;
+	margin-top: 85px;
+	color: #000000;
 	font-size: 16px;
 	font-family: Arimo 
 }
 
 .Revisar_chapa{
 	position: absolute;
-	margin-left:630px;
-	margin-top: -177px;
-	color: #DFD1A7;
-	font-size: 20px;
-	font-family: Arimo 
+	margin-left:250px;
+	margin-top: 105px;
+	color: #FFFFFF;
+	font-size: 13px;
+	font-family: Arimo;
+	height: 32px; 
 }
 
 .nombre_tablero{
 	position: absolute;
-	margin-left:865px;
-	margin-top: -260px;
-	color: #DFD1A7;
+	margin-left:100px;
+	margin-top: 0px;
+	color: #000000;
 	font-size: 30px;
 	font-family: Arimo 
 }
 
 .Rechazo_tablero{
 	position: absolute;
-	margin-left:840px;
-	margin-top: -170px;
-	color: #DFD1A7;
+	margin-left:45px;
+	margin-top: 105px;
+	color: #FFFFFF;
 	font-size: 18px;
-	font-family: Arimo 
+	font-family: Scene 
 }
 
 .objetivo_tablero{
 	position: absolute;
-	margin-left:855px;
-	margin-top: -200px;
-	color: #DFD1A7;
+	margin-left:65px;
+	margin-top: 85px;
+	color: #000000;
 	font-size: 16px;
 	font-family: Arimo 
 }
 
 .Revisar_tablero{
 	position: absolute;
-	margin-left:1000px;
-	margin-top: -177px;
-	color: #DFD1A7;
-	font-size: 20px;
-	font-family: Arimo 
+	margin-left:250px;
+	margin-top: 105px;
+	color: #FFFFFF;
+	font-size: 13px;
+	font-family: Arimo;
+	height: 32px; 
 }
 
 .nombre_meta{
 	position: absolute;
-	margin-left:1300px;
-	margin-top: -260px;
-	color: #DFD1A7;
+	margin-left:140px;
+	margin-top: 0px;
+	color: #000000;
 	font-size: 30px;
 	font-family: Arimo 
 }
 
 .Aprobado_meta{
 	position: absolute;
-	margin-left:1205px;
-	margin-top: -170px;
-	color: #DFD1A7;
+	margin-left:45px;
+	margin-top: 105px;
+	color: #FFFFFF;
 	font-size: 18px;
-	font-family: Arimo 
+	font-family: Scene 
 }
 
 .objetivo_meta{
 	position: absolute;
-	margin-left:1220px;
-	margin-top: -200px;
-	color: #DFD1A7;
+	margin-left:65px;
+	margin-top: 85px;
+	color: #000000;
 	font-size: 16px;
 	font-family: Arimo 
 }
 
 .Revisar_meta{
 	position: absolute;
-	margin-left:1365px;
-	margin-top: -177px;
-	color: #DFD1A7;
-	font-size: 20px;
-	font-family: Arimo 
+	margin-left:250px;
+	margin-top: 105px;
+	color: #FFFFFF;
+	font-size: 13px;
+	font-family: Arimo;
+	height: 32px; 
 }
 
 .grafico_cantidad_kpi{
 	position: absolute;
-	margin-left:150px;
-	margin-top: 100px;
-	color: #DFD1A7;
+	margin-left:10px;
+	margin-top:20px;
+	color: #000000;
+}
+
+.revisa_variables{
+	position: absolute;
+	margin-left:45%;
+	margin-top: 0px;
+	color:#000000;
+	font-size: 30px;
+	font-family: Arimo 
+}
+
+.custom-dropdown{
+	position: absolute;
+	margin-top: 50px;
+	margin-left: 40px;
+}
+
+.custom-dropdown .dropdown-menu {
+	position: absolute;
+    background-color: #f3e9d2; /* Color de fondo */
+    color: #000000; /* Color del texto */
+    font-size: 14px; /* Tamaño del texto */
+    width: 300px; /* Ancho del dropdown */
+    border: 1px solid #dfd1a7; /* Color del borde */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Sombra */
+}
+
+.custom-dropdown .dropdown-item {
+    padding: 10px; /* Espaciado interno de los items */
+}
+
+.custom-dropdown .dropdown-item:hover {
+    background-color: #dfd1a7; /* Color de fondo al pasar el mouse */
+    color: #000000; /* Color del texto al pasar el mouse */
+}
+
+.custom-dropdown .dropdown-toggle {
+    background-color: #948F8F; /* Color de fondo del botón del dropdown */
+    color: #FFFFFF; /* Color del texto del botón del dropdown */
+    border-color: #000000; /* Color del borde del botón del dropdown */
+
+}
+
+.custom-dropdown2{
+	position: absolute;
+	margin-top: 50px;
+	margin-left: 140px;
+}
+
+.custom-dropdown2 .dropdown-menu {
+	position: absolute;
+    background-color: #f3e9d2; /* Color de fondo */
+    color: #000000; /* Color del texto */
+    font-size: 14px; /* Tamaño del texto */
+    width: 300px; /* Ancho del dropdown */
+    border: 1px solid #dfd1a7; /* Color del borde */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Sombra */
+}
+
+.custom-dropdown2 .dropdown-item {
+    padding: 10px; /* Espaciado interno de los items */
+}
+
+.custom-dropdown2 .dropdown-item:hover {
+    background-color: #dfd1a7; /* Color de fondo al pasar el mouse */
+    color: #000000; /* Color del texto al pasar el mouse */
+}
+
+.custom-dropdown2 .dropdown-toggle {
+    background-color: #948F8F; /* Color de fondo del botón del dropdown */
+    color: #FFFFFF; /* Color del texto del botón del dropdown */
+    border-color: #000000; /* Color del borde del botón del dropdown */
+
+}
+
+.Revisar_panel{
+	position: absolute;
+	margin-left:1000px;
+	margin-top: 400px;
+	color:#000000;
+	font-size: 20px;
+	font-family: Arimo 
 }
 
 
@@ -479,7 +813,7 @@
 	text-align: center;
 	font-size: 10px;
 	margin-left: 0px;
-	color: #DFD1A7;
+	color: #000000;
 }
 
 .INDICADOR_1 {

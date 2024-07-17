@@ -1,7 +1,16 @@
-from dash import html, dcc
+from dash import html, dcc, dash_table
 import plotly.express as px
 from data_loader import load_data
+import dash_daq as daq
+import dash_bootstrap_components as dbc
+#from utils import widget_fecha
+from datetime import datetime
+from datetime import date
+import plotly.graph_objects as go #Módulo para crear gráficos
+import plotly.express as px #Módulo para crear gráficos
 
+
+"""
 def create_layout(app):
     df = load_data()
     
@@ -21,3 +30,45 @@ def create_layout(app):
             figure=fig
         )
     ])
+"""
+
+def create_layout(app):
+    principal= html.Div([
+
+        dbc.Card([html.Div([
+            dcc.Link('Macerado/Torno', href='/Recomendacion',className= "mace_torno")
+                            ],className = 'mace_torno_div'),
+        dcc.Link('Recomendación', href='/Recomendacion',className= "_recomendacion"),
+        dcc.Link('Simulación', href='/Simulacion',className= "_simulacion"),
+        dcc.Link('Refuerzo', href='/Refuerzo',className= "_refuerzo"),
+        ], className = "principal_card_1"),
+        dbc.Card([html.Div([
+            dcc.Link('Secado', href='/Recomendacion',className= "secado")
+                            ], className = 'secado_div'),
+        dcc.Link('Recomendación', href='/Recomendacion',className= "_recomendacion"),
+        dcc.Link('Simulación', href='/Simulacion',className= "_simulacion"),
+        dcc.Link('Refuerzo', href='/Refuerzo',className= "_refuerzo"),
+        ], className = "principal_card_2"),
+        dbc.Card([html.Div([
+            dcc.Link('Encolado', href='/Recomendacion',className= "encolado")
+                            ],className = 'encolado_div'),
+        dcc.Link('Recomendación', href='/Recomendacion',className= "_recomendacion"),
+        dcc.Link('Simulación', href='/Simulacion',className= "_simulacion"),
+        dcc.Link('Refuerzo', href='/Refuerzo',className= "_refuerzo"),
+        ], className = "principal_card_3"),
+        dbc.Card([html.Div([
+            dcc.Link('Prensa/Tablero', href='/Recomendacion',className= "prensa")
+                            ],className = 'prensa_div'),
+        dcc.Link('Recomendación', href='/Recomendacion',className= "_recomendacion"),
+        dcc.Link('Simulación', href='/Simulacion',className= "_simulacion"),
+        dcc.Link('Refuerzo', href='/Refuerzo',className= "_refuerzo"),
+        ], className = "principal_card_4"),
+        html.Div(className="Logo_UBB"),
+        html.Div(className="Logo_Arauco"),
+        html.Div(className="Logo_ANID"),
+        html.H2('Análisis Prescriptivo basado en Machine Learning para la operación de plantas de tablero contrachapado de alta producción de pino radiata', className = "nombre_proyecto"),
+        html.H2('4.0', className = "numero_proyecto"),
+        html.H2('Proyecto FONDEF ID22i10123', className = "codigo_proyecto")] 
+
+        ,style = {'background': '#FFFFFF','height': '100vh','posicion': 'absolute'})
+    return principal

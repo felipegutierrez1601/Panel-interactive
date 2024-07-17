@@ -1,7 +1,7 @@
 from dash import html, dcc
 import plotly.express as px
 from data_loader import load_data
-
+"""
 def create_layout(app):
     df = load_data()
     dcc.Interval(id = 'intervalo', interval = 1000)
@@ -19,3 +19,4 @@ def create_layout(app):
             figure=fig
         )
     ])
+"""
