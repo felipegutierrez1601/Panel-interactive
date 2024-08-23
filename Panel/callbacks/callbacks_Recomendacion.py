@@ -1,8 +1,109 @@
 from dash.dependencies import Input, Output,State
-from data_loader import load_data
+#from data_loader import load_data
 import plotly.express as px
+import pyodbc
+import pandas as pd
+import plotly.graph_objects as go #Módulo para crear gráficos
+import dash
 
 def register_callbacks_layout1(app):
+    #Df = None
+    def load_data(consulta,database):
+        mi_conexion = pyodbc.connect(
+                    Trusted_Connection='No',
+                    Authentication='ActiveDirectoryPassword',
+                    UID='',
+                    PWD= '',
+                    Driver='{SQL Server}',
+                    Server='',
+                    Database=database)
+        data = pd.read_sql(consulta, mi_conexion)
+        return data
+
+    def calcular_porcentaje(row,total_positivo,total_negativo):
+        if row['Valor_Shap'] > 0:
+            return (row['Valor_Shap'] / total_positivo) * 100
+        elif row['Valor_Shap'] < 0:
+            return (row['Valor_Shap'] / total_negativo) * 100
+        else:
+            return 0
+
+
+
+
+    def grafico_importancia(x_data,y_data,z_data):
+        colors = ['#08AA49' if x > 0 else '#D20101' for x in x_data]
+        garfico_features = go.Figure(data=[
+                go.Bar(name='Cumple', x=z_data.abs(), y=y_data, marker_color = colors,orientation='h')])
+        garfico_features.update_traces(marker_line_width=1.5, opacity=1)
+        garfico_features.update_layout(
+            xaxis_title='Porcentaje por objetivo %',
+            showlegend=False,
+            margin=dict(l=0, r=0, t=30, b=0),  # Elimina márgenes
+            paper_bgcolor='rgba(0,0,0,0)',  # Fondo del contenedor transparente
+            plot_bgcolor='#E0DEDE',   # Fondo de la gráfica transparente
+            xaxis=dict(
+                showline=True,  # Elimina la línea del eje x
+                zeroline=True   # Elimina la línea cero
+            ),
+            yaxis=dict(
+                showline=True,  # Elimina la línea del eje y
+                zeroline=True   # Elimina la línea cero
+            ),
+            width=500,height=310,
+
+            font=dict(
+                family="Arimo ",   # Fuente del texto
+                size=10,          # Tamaño del texto
+                color="#000000"     # Color del texto
+            ),
+            barmode='group')
+        return garfico_features
+
+    def sharp(tabla):
+        consulta = f"""
+                        WITH Totales AS (
+                        SELECT
+                            SUM(CASE WHEN s.Valor_Shap > 0 THEN s.Valor_Shap ELSE 0 END) AS Total_Positivo,
+                            SUM(CASE WHEN s.Valor_Shap < 0 THEN s.Valor_Shap ELSE 0 END) AS Total_Negativo
+                        FROM {tabla} AS s
+                    )
+                    SELECT
+                        v.Nombre_variable AS ID_tabla_variable,
+                        v.Maquina AS ID_tabla_maquina,
+                        ROUND(l.Value, 2) AS ID_tabla_valor,
+                        v.Min AS ID_tabla_inferior,
+                        v.Max AS ID_tabla_superior,
+                        v.UOM AS ID_tabla_uom,
+                        ROUND(
+                            CASE
+                                WHEN s.Valor_Shap > 0 THEN s.Valor_Shap / t.Total_Positivo * 100
+                                WHEN s.Valor_Shap < 0 THEN s.Valor_Shap / t.Total_Negativo * 100
+                                ELSE 0
+                            END, 3
+                        ) AS ID_tabla_jerarquia_porcentaje,
+                        CASE
+                            WHEN s.Valor_Shap > 0 THEN 'cumple'
+                            WHEN s.Valor_Shap < 0 THEN 'no cumple'
+                            ELSE 'indeterminado'
+                        END AS ID_tabla_objetivo
+                    FROM Variables v
+                    JOIN Lecturas_Numericas_DT AS l ON v.ID_variable = l.ID_Variable
+                    JOIN {tabla} AS s ON v.Descripcion = s.Variable_Shap
+                    JOIN (
+                        SELECT ID_Variable, MAX(TS) AS MaxTS
+                        FROM Lecturas_Numericas_DT
+                        GROUP BY ID_Variable
+                    ) AS latest ON l.ID_Variable = latest.ID_Variable AND l.TS = latest.MaxTS
+                    CROSS JOIN Totales t
+                    ORDER BY ROUND(s.Valor_Shap, 2) DESC;"""
+
+        data = load_data(consulta,'Arauco')
+        data = data.to_dict(orient='records')
+        return data
+
+
+
     @app.callback(
     [Output('link-1', 'style'),
      Output('link-2', 'style'),
@@ -28,3 +129,300 @@ def register_callbacks_layout1(app):
             link3_style = selected_style
 
         return link1_style, link2_style, link3_style
+
+    @app.callback(
+        [Output('graph_CALIDAD_GENERAL', 'figure'),
+         Output('graph_CALIDAD_SECADOR', 'figure')],
+        [Input('Calendario2', 'date'),
+         Input('Calendario', 'date')])
+    def update_graph(start_date, end_date):
+        if start_date > end_date:
+            start_date, end_date = end_date, start_date
+            consulta = f"""
+            SELECT calidad_chapa_general,rendimiento_clear,calidad_chapa_s24,calidad_chapa_s18,calidad_chapa_s15
+            FROM Lecturas_Resultados
+            WHERE TS BETWEEN '{start_date}' AND '{end_date}'
+            """
+            cantidad = load_data(consulta,'UBB')
+            
+            garfico_cantidad = go.Figure(data=[
+            go.Bar(name='Cumple', x=['Calidad S24','Calidad S15','Calidad S18'], y=[cantidad[cantidad['calidad_chapa_s24'] == 'cumple'].shape[0],cantidad[cantidad['calidad_chapa_s15'] == 'cumple'].shape[0], cantidad[cantidad['calidad_chapa_s18'] == 'cumple'].shape[0] ], marker_color = "#08AA49"),
+            go.Bar(name='No Cumple', x=['Calidad S24','Calidad S15','Calidad S18'], y=[cantidad[cantidad['calidad_chapa_s24'] == 'No cumple'].shape[0],cantidad[cantidad['calidad_chapa_s15'] == 'No cumple'].shape[0], cantidad[cantidad['calidad_chapa_s18'] == 'No cumple'].shape[0] ], marker_color = "#D20101"),
+            ])
+
+            garfico_cantidad.update_traces(marker_line_width=1.5, opacity=1)
+
+            garfico_cantidad.update_layout(
+                yaxis_title='Cantidad',
+                showlegend=False,
+                margin=dict(l=0, r=0, t=30, b=0),  # Elimina márgenes
+                paper_bgcolor='rgba(0,0,0,0)',  # Fondo del contenedor transparente
+                plot_bgcolor='#E0DEDE',   # Fondo de la gráfica transparente
+                xaxis=dict(
+                    showline=True,  # Elimina la línea del eje x
+                    zeroline=True   # Elimina la línea cero
+                ),
+                yaxis=dict(
+                    showline=True,  # Elimina la línea del eje y
+                    zeroline=True   # Elimina la línea cero
+                ),
+                width=300,height=210,
+
+                font=dict(
+                    family="Arimo ",   # Fuente del texto
+                    size=10,          # Tamaño del texto
+                    color="#000000"     # Color del texto
+                ),
+                title={
+                    'text': 'Calidad',
+                    'font': {'size': 15},
+                    'x': 0.5,  # Centramos el título
+                    'xanchor': 'center'  # Alineación del título en el centro
+                        },
+                barmode='group')
+            garfico_cantidad_2 = go.Figure(data=[
+            go.Bar(name='Cumple', x=['Calidad Secado', 'Rendimiento Clear'], y=[cantidad[cantidad['calidad_chapa_general'] == 'cumple'].shape[0],cantidad[cantidad['rendimiento_clear'] == 'cumple'].shape[0] ], marker_color = "#08AA49"),
+            go.Bar(name='No Cumple', x=['Calidad Secado', 'Rendimiento Clear'], y=[cantidad[cantidad['calidad_chapa_general'] == 'No cumple'].shape[0],cantidad[cantidad['rendimiento_clear'] == 'No cumple'].shape[0] ], marker_color = "#D20101")])
+
+            garfico_cantidad_2.update_traces(marker_line_width=1.5, opacity=1)
+
+            garfico_cantidad_2.update_layout(
+                yaxis_title='Cantidad',
+                showlegend=False,
+                margin=dict(l=0, r=0, t=30, b=0),  # Elimina márgenes
+                paper_bgcolor='rgba(0,0,0,0)',  # Fondo del contenedor transparente
+                plot_bgcolor='#E0DEDE',   # Fondo de la gráfica transparente
+                xaxis=dict(
+                    showline=True,  # Elimina la línea del eje x
+                    zeroline=True   # Elimina la línea cero
+                ),
+                yaxis=dict(
+                    showline=True,  # Elimina la línea del eje y
+                    zeroline=True   # Elimina la línea cero
+                ),
+                width=300,height=210,
+
+                font=dict(
+                    family="Arimo ",   # Fuente del texto
+                    size=10,          # Tamaño del texto
+                    color="#000000"     # Color del texto
+                ),
+                barmode='group')
+            return [garfico_cantidad,garfico_cantidad_2]
+
+    @app.callback(
+        [Output('Estado_s24', 'children'),
+        Output('Estado_s24', 'color'),
+        Output('Estado_s15', 'children'),
+        Output('Estado_s15', 'color'),
+        Output('Estado_s18', 'children'),
+        Output('Estado_s18', 'color'),
+        Output('Estado_chapa', 'children'),
+        Output('Estado_chapa', 'color'),
+        Output('Estado_clear', 'children'),
+        Output('Estado_clear', 'color')],
+        [Input('intervalo', 'interval')])
+    def update_graph(*args):
+        consulta = f"""
+            SELECT TOP 1 calidad_chapa_s24,calidad_chapa_s18,calidad_chapa_s15,calidad_chapa_general,rendimiento_clear
+            FROM Lecturas_Resultados
+            order by TS DESC
+            """
+        Df = load_data(consulta,'UBB')
+        if not Df.empty:
+            return  ((['Cumple', '#08AA49'] if Df['calidad_chapa_s24'].fillna('0').iloc[-1] == 'cumple' else ['No Cumple', '#D20101']) +
+                    (['Cumple', '#08AA49'] if Df['calidad_chapa_s15'].fillna('0').iloc[-1] == 'cumple' else ['No Cumple', '#D20101'])  +
+                    (['Cumple', '#08AA49'] if Df['calidad_chapa_s18'].fillna('0').iloc[-1] == 'cumple' else ['No Cumple', '#D20101'])  +
+                    (['Cumple', '#08AA49'] if Df['calidad_chapa_general'].fillna('0').iloc[-1] == 'cumple' else ['No Cumple', '#D20101']) +
+                    (['Cumple', '#08AA49'] if Df['rendimiento_clear'].fillna('0').iloc[-1] == 'cumple' else ['No Cumple', '#D20101']))
+
+        else:
+            return ['No Data','secondary']* 5
+
+
+
+    @app.callback(
+        [Output('alert_S24', 'value'),
+        Output('alert_S18', 'value'),
+        Output('alert_S15', 'value'),
+        Output('alert_chapa', 'value'),
+        Output('alert_clear', 'value')],
+        [Input('intervalo', 'n_intervals')])
+    def update_graph(intervalo):
+        consulta = f"""
+            SELECT TOP 2 calidad_chapa_s24,calidad_chapa_s18,calidad_chapa_s15,calidad_chapa_general,rendimiento_clear
+            FROM Lecturas_Resultados
+            order by TS DESC
+            """
+        Df = load_data(consulta,'UBB')
+        s24 =  Df[Df['calidad_chapa_s24'].fillna('0') == 'No cumple'].shape[0] if not Df['calidad_chapa_s24'].isnull().all() else 0
+        s18 =  Df[Df['calidad_chapa_s18'].fillna('0') == 'No cumple'].shape[0] if not Df['calidad_chapa_s18'].isnull().all() else 0
+        s15 =  Df[Df['calidad_chapa_s15'].fillna('0') == 'No cumple'].shape[0] if not Df['calidad_chapa_s15'].isnull().all() else 0
+        chap =  Df[Df['calidad_chapa_general'].fillna('0') == 'No cumple'].shape[0] if not Df['calidad_chapa_general'].isnull().all() else 0
+        clear =  Df[Df['rendimiento_clear'].fillna('0') == 'No cumple'].shape[0] if not Df['rendimiento_clear'].isnull().all() else 0
+
+        return[s24,s18,s15,chap,clear]
+
+
+
+    @app.callback(
+        [Output('Va_importantes', 'figure'),
+        Output('tabla_rangos', 'data')],
+        #Output('Revisar_s24', 'n_clicks'),
+        #Output('Revisar_s18', 'n_clicks'),
+        #Output('Revisar_s15', 'n_clicks'),
+        #Output('Revisar_chapa', 'n_clicks'),
+        #Output('Revisar_clear', 'n_clicks')],
+
+
+        [Input('Revisar_s24', 'n_clicks'),
+        Input('Revisar_s18', 'n_clicks'),
+        Input('Revisar_s15', 'n_clicks'),
+        Input('Revisar_chapa', 'n_clicks'),
+        Input('Revisar_clear', 'n_clicks')],
+
+        [State('alert_S24', 'value'),
+         State('alert_S18', 'value'),
+         State('alert_S15', 'value'),
+         State('alert_chapa', 'value'),
+         State('alert_clear', 'value'),])
+
+    def update_graph(Revisar_S24,Revisar_S18,Revisar_S15,Revisar_chapa,Revisar_clear,s24,s18,s15,chapa,clear):
+        ctx = dash.callback_context
+        button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+
+        if button_id == 'Revisar_s18':
+            consulta = f"""
+                SELECT Variable_Shap,
+                Valor_Shap
+                FROM S18_Shap 
+                order by ABS(Valor_Shap) asc
+                """
+            feature_tablero = load_data(consulta,'Arauco')
+            if int(s18) > -10:
+                total_positivo = feature_tablero[feature_tablero['Valor_Shap'] > 0]['Valor_Shap'].sum()
+                total_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]['Valor_Shap'].sum()
+                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))     
+                garfico_features = grafico_importancia(feature_tablero['Valor_Shap'],feature_tablero['Variable_Shap'],feature_tablero['porcentaje'])
+                datos = sharp('S18_Shap')
+                return [garfico_features,datos]
+
+
+        elif button_id == 'Revisar_s24' :
+            consulta = f"""
+                SELECT Variable_Shap,
+                Valor_Shap
+                FROM S24_Shap 
+                order by ABS(Valor_Shap) asc
+                """
+            feature_tablero = load_data(consulta,'Arauco')
+            if int(s24) >= 0:
+                total_positivo = feature_tablero[feature_tablero['Valor_Shap'] > 0]['Valor_Shap'].sum()
+                total_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]['Valor_Shap'].sum()
+                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))     
+                garfico_features = grafico_importancia(feature_tablero['Valor_Shap'],feature_tablero['Variable_Shap'],feature_tablero['porcentaje'])
+                datos = sharp('S24_Shap')
+                return [garfico_features,datos] 
+
+
+        elif button_id == 'Revisar_s15':
+            consulta = f"""
+                SELECT Variable_Shap,
+                Valor_Shap
+                FROM S15_Shap 
+                order by ABS(Valor_Shap) asc
+                """
+            feature_tablero = load_data(consulta,'Arauco')
+            if int(s15) >= 0:
+                total_positivo = feature_tablero[feature_tablero['Valor_Shap'] > 0]['Valor_Shap'].sum()
+                total_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]['Valor_Shap'].sum()
+                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))     
+                garfico_features = grafico_importancia(feature_tablero['Valor_Shap'],feature_tablero['Variable_Shap'],feature_tablero['porcentaje'])
+                datos = sharp('S15_Shap')
+                return [garfico_features,datos]
+
+        elif button_id == 'Revisar_chapa':
+            consulta = f"""
+                SELECT Variable_Shap,
+                Valor_Shap
+                FROM chapa_G_Shap 
+                order by ABS(Valor_Shap) asc
+                """
+            feature_tablero = load_data(consulta,'Arauco')
+            if int(chapa) > 0:
+                total_positivo = feature_tablero[feature_tablero['Valor_Shap'] > 0]['Valor_Shap'].sum()
+                total_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]['Valor_Shap'].sum()
+                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))     
+                garfico_features = grafico_importancia(feature_tablero['Valor_Shap'],feature_tablero['Variable_Shap'],feature_tablero['porcentaje'])
+                datos = sharp('chapa_G_Shap')
+                return [garfico_features,datos] 
+
+        elif button_id == 'Revisar_clear':
+            consulta = f"""
+                SELECT feature,importance
+                FROM Tabla_features
+                order by importance asc
+                """
+            feature_tablero = load_data(consulta,'Arauco')
+            if int(clear) > 0:
+                total_positivo = feature_tablero[feature_tablero['Valor_Shap'] > 0]['Valor_Shap'].sum()
+                total_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]['Valor_Shap'].sum()
+                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))     
+                garfico_features = grafico_importancia(feature_tablero['Valor_Shap'],feature_tablero['Variable_Shap'],feature_tablero['porcentaje'])
+                datos = sharp('tabla_sharp')
+                return [garfico_features,datos]  
+
+        else:
+            return dash.no_update
+
+
+    @app.callback(
+        Output("url2", "href"),
+        [Input("id_revisar_panel", "n_clicks")],
+
+        [State('Revisar_s24', 'n_clicks'),
+        State('Revisar_s18', 'n_clicks'),
+        State('Revisar_s15', 'n_clicks'),
+        State('Revisar_chapa', 'n_clicks'),
+        State('Revisar_clear', 'n_clicks')])
+
+
+    def abrir_pagina(revisar,s24_count,s18_count,s15_count,chapa_count,clear_count):
+
+        print('El s18 Antes: ',s18_count)
+        print('El s15 Antes: ',s15_count)
+        print('El s24 Antes: ',s24_count)
+
+        if not s18_count != None:
+            s18_count = 0
+        if not s24_count != None:
+            s24_count = 0
+        if not s15_count != None:
+            s15_count = 0
+        if not chapa_count != None:
+            chapa_count = 0
+        if not clear_count != None:
+            clear_count = 0
+
+        print('El s18 Despues: ',s18_count)
+        print('El s15 Despues: ',s15_count)
+        print('El s24 Despues: ',s24_count)
+
+
+        s18 = [s18_count,"https://lalagos.grafana.net/d/Secado_Secador_18-250724_v/secador-18?var-G1_Proceso=&var-G1_Maquina=&var-G1_Variable=&from=now-1h&to=now&timezone=browser"]
+        s15 = [s15_count,"https://lalagos.grafana.net/d/Secado_Secador_15-250724_v/secador-15?var-G1_Proceso=&var-G1_Maquina=&var-G1_Variable=&from=now-1h&to=now&timezone=browser"]
+        s24 = [s24_count,"https://lalagos.grafana.net/d/Secado_Secador_24-250724_v/secador-24?var-G1_Proceso=&var-G1_Maquina=&var-G1_Variable=&from=now-1h&to=now&timezone=browser"]
+
+        activar = {}
+        activar['s18'] = s18
+        activar['s15'] = s15
+        activar['s24'] = s24
+
+        if revisar != None:
+            max_key = max(activar, key=lambda k: activar[k][0])
+            max_url = activar[max_key][1]
+            return max_url
+       
+        else:
+            return dash.no_update
+        

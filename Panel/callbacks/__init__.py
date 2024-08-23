@@ -1,6 +1,9 @@
 from dash.dependencies import Input, Output
 from layouts import Principal, Recomendacion, Refuerzo,Simulacion
 
+import pandas as pd
+
+
 def register_callbacks(app):
     @app.callback(
         Output('page-content', 'children'),

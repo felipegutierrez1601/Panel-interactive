@@ -1,13 +1,13 @@
 import pandas as pd
 
-def load_data():
+def load_data(consulta):
     mi_conexion = pyodbc.connect(
                 Trusted_Connection='No',
                 Authentication='ActiveDirectoryPassword',
-                UID='',
-                PWD= '',
+                UID='Felipe',
+                PWD= 'Fondef',
                 Driver='{SQL Server}',
-                Server='',
-                Database='')
-    data = pd.read_sql('SELECT * FROM KPIS', mi_conexion)
+                Server='146.83.131.135',
+                Database='UBB')
+    data = pd.read_sql(consulta, mi_conexion)
     return data

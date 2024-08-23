@@ -2,7 +2,7 @@
 	position: absolute;
 	margin-left: calc((100% - 1440px) / 2);
 	margin-right: 5%;
-	margin-top: 6%;
+	margin-top: 10%;
 	height: 320px;
 	width: 720px;
 	background-color: #FFFFFF;
@@ -16,7 +16,7 @@
 	position: absolute;
 	margin-left: calc((100% - 1440px) / 2 + 740px);
 	margin-right: 5%;
-	margin-top: 6%;
+	margin-top: 10%;
 	height: 320px;
 	width: 720px;
 	background-color:#FFFFFF;
@@ -25,39 +25,13 @@
     border-color: #000000; /* Ajusta el color según sea necesario */
 }
 
-.principal_card_3 {
-	position: absolute;
-	margin-left: calc((100% - 1440px) / 2);
-	margin-right: 5%;
-	margin-top: 425px;
-	height: 320px;
-	width: 720px;
-	background-color:#FFFFFF;
-	border-width: 3px; /* Ajusta este valor al grosor deseado */
-    border-style: solid;
-    border-color: #000000; /* Ajusta el color según sea necesario */
-}
-
-.principal_card_4 {
-	position: absolute;
-	margin-left: calc((100% - 1440px) / 2 + 740px);
-	margin-right: 5%;
-	margin-top: 425px;
-	height: 320px;
-	width: 720px;
-	background-color: #FFFFFF;
-	border-width: 3px; /* Ajusta este valor al grosor deseado */
-    border-style: solid;
-    border-color: #000000;/* Ajusta el color según sea necesario */
-}
-
-.mace_torno {
+.mace_torno_secado {
 	position: absolute;
 	margin-top: 0px;
     font-size: 30px;
     font-family: Arimo; 
     text-decoration: none;
-    margin-left: 250px;
+    margin-left: 300px;
     
     color: #000000;
 }
@@ -115,7 +89,7 @@
     padding: 10px 37px;
 }
 
-.secado {
+.enco_empaque {
 	margin-top: 0px;
     font-size: 30px;
     font-family: Arimo; 
@@ -231,6 +205,7 @@
 .link {
 	position: absolute;
     font-size: 1px;
+    margin-left: 43%;
     font-family: Scene; 
     color: #C0C6C3;
     margin-top:2px ;
@@ -273,7 +248,7 @@
 	margin-left: 400px;
 	margin-right: 5%;
 	margin-top: 3%;
-	height: 200px;
+	height: 140px;
 	width: 380px;
 	background-color: #FFFFFF;
 	border-width: 1px; /* Ajusta este valor al grosor deseado */
@@ -286,7 +261,7 @@
 	margin-left: calc((100% - 1440px) / 2 + 740px);
 	margin-right: 5%;
 	margin-top: 3%;
-	height: 200px;
+	height: 140px;
 	width: 380px;
 	background-color: #FFFFFF;
 	border-width: 1px; /* Ajusta este valor al grosor deseado */
@@ -299,8 +274,34 @@
 	margin-left: calc((100% - 1440px) / 2 + 1130px);
 	margin-right: 5%;
 	margin-top: 3%;
-	height: 200px;
+	height: 140px;
 	width: 350px;
+	background-color: #FFFFFF;
+	border-width: 1px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: black; /* Ajusta el color según sea necesario */
+}
+
+.recomendacion_card_5 {
+	position: absolute;
+	margin-left: 400px;
+	margin-right: 5%;
+	margin-top: 12.5%;
+	height: 140px;
+	width: 380px;
+	background-color: #FFFFFF;
+	border-width: 1px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: black; /* Ajusta el color según sea necesario */
+}
+
+.recomendacion_card_6 {
+	position: absolute;
+	margin-left: calc((100% - 1440px) / 2 + 740px);
+	margin-right: 5%;
+	margin-top: 12.5%;
+	height: 140px;
+	width: 380px;
 	background-color: #FFFFFF;
 	border-width: 1px; /* Ajusta este valor al grosor deseado */
     border-style: solid;
@@ -325,12 +326,12 @@
     background-color: black;
 }
 
-.recomendacion_card_5{
+.recomendacion_card_7{
 	position: absolute;
 	margin-left: 0.5%;
 	margin-right: 0px;
-	margin-top: 350px;
-	height: 350px;
+	margin-top: 240px;
+	height: 465px;
 	width: 330px;
 	background-color: #FFFFFF;
 	border-width: 1px; /* Ajusta este valor al grosor deseado */
@@ -338,12 +339,12 @@
     border-color: black; /* Ajusta el color según sea necesario */
 }
 
-.recomendacion_card_6{
+.recomendacion_card_8{
 	position: absolute;
 	margin-left: 365px;
 	margin-right: 0px;
-	margin-top: 260px;
-	height: 450px;
+	margin-top: 340px;
+	height: 370px;
 	width: 1165px;
 	background-color: #FFFFFF;
 	border: none;
@@ -550,6 +551,113 @@
 	font-family: Arimo 
 }
 
+.nombre_S24{
+	position: absolute;
+	margin-left:110px;
+	margin-top: 0px;
+	color: #000000;
+	font-size: 30px;
+	font-family: Arimo 
+}
+
+
+.estado_{
+	position: absolute;
+	margin-left:45px;
+	margin-top: 85px;
+	color: #FFFFFF;
+	font-size: 18px;
+	font-family: Scene 
+}
+
+.Indefinido_{
+	position: absolute;
+	margin-left:45px;
+	margin-top: 85px;
+	color: #FFFFFF;
+	font-size: 18px;
+	font-family: Scene 
+}
+
+.objetivo_S24{
+	position: absolute;
+	margin-left:65px;
+	margin-top: 65px;
+	color: #000000;
+	font-size: 16px;
+	font-family: Arimo 
+}
+
+
+
+.Revisar_S24{
+	position: absolute;
+	margin-left:250px;
+	margin-top: 85px;
+	color: #FFFFFF;
+	font-size: 13px;
+	font-family: Arimo;
+	height: 32px; 
+}
+
+.nombre_S15{
+	position: absolute;
+	margin-left:110px;
+	margin-top: 0px;
+	color: #000000;
+	font-size: 30px;
+	font-family: Arimo 
+}
+
+
+.objetivo_S15{
+	position: absolute;
+	margin-left:65px;
+	margin-top: 65px;
+	color: #000000;
+	font-size: 16px;
+	font-family: Arimo 
+}
+
+.Revisar_S15{
+	position: absolute;
+	margin-left:250px;
+	margin-top: 85px;
+	color: #FFFFFF;
+	font-size: 13px;
+	font-family: Arimo;
+	height: 32px; 
+}
+
+.nombre_S18{
+	position: absolute;
+	margin-left:110px;
+	margin-top: 0px;
+	color: #000000;
+	font-size: 30px;
+	font-family: Arimo 
+}
+
+
+.objetivo_S18{
+	position: absolute;
+	margin-left:65px;
+	margin-top: 65px;
+	color: #000000;
+	font-size: 16px;
+	font-family: Arimo 
+}
+
+.Revisar_S18{
+	position: absolute;
+	margin-left:250px;
+	margin-top: 85px;
+	color: #FFFFFF;
+	font-size: 13px;
+	font-family: Arimo;
+	height: 32px; 
+}
+
 .nombre_chapa{
 	position: absolute;
 	margin-left:100px;
@@ -559,102 +667,50 @@
 	font-family: Arimo 
 }
 
-.Aprobado_chapa{
-	position: absolute;
-	margin-left:45px;
-	margin-top: 105px;
-	font-size: 18px;
-	font-family: Scene;
-	color: #FFFFFF
-}
+
 
 .objetivo_chapa{
 	position: absolute;
 	margin-left:65px;
-	margin-top: 85px;
+	margin-top: 65px;
 	color: #000000;
 	font-size: 16px;
 	font-family: Arimo 
 }
 
-.Revisar_chapa{
+.Revisar_Chapa{
 	position: absolute;
 	margin-left:250px;
-	margin-top: 105px;
+	margin-top: 85px;
 	color: #FFFFFF;
 	font-size: 13px;
 	font-family: Arimo;
 	height: 32px; 
 }
 
-.nombre_tablero{
+.nombre_clear{
 	position: absolute;
-	margin-left:100px;
+	margin-left:70px;
 	margin-top: 0px;
 	color: #000000;
 	font-size: 30px;
 	font-family: Arimo 
 }
 
-.Rechazo_tablero{
-	position: absolute;
-	margin-left:45px;
-	margin-top: 105px;
-	color: #FFFFFF;
-	font-size: 18px;
-	font-family: Scene 
-}
 
-.objetivo_tablero{
+.objetivo_clear{
 	position: absolute;
 	margin-left:65px;
-	margin-top: 85px;
+	margin-top: 65px;
 	color: #000000;
 	font-size: 16px;
 	font-family: Arimo 
 }
 
-.Revisar_tablero{
+.Revisar_Clear{
 	position: absolute;
 	margin-left:250px;
-	margin-top: 105px;
-	color: #FFFFFF;
-	font-size: 13px;
-	font-family: Arimo;
-	height: 32px; 
-}
-
-.nombre_meta{
-	position: absolute;
-	margin-left:140px;
-	margin-top: 0px;
-	color: #000000;
-	font-size: 30px;
-	font-family: Arimo 
-}
-
-.Aprobado_meta{
-	position: absolute;
-	margin-left:45px;
-	margin-top: 105px;
-	color: #FFFFFF;
-	font-size: 18px;
-	font-family: Scene 
-}
-
-.objetivo_meta{
-	position: absolute;
-	margin-left:65px;
 	margin-top: 85px;
-	color: #000000;
-	font-size: 16px;
-	font-family: Arimo 
-}
-
-.Revisar_meta{
-	position: absolute;
-	margin-left:250px;
-	margin-top: 105px;
 	color: #FFFFFF;
 	font-size: 13px;
 	font-family: Arimo;
@@ -663,19 +719,25 @@
 
 .grafico_cantidad_kpi{
 	position: absolute;
-	margin-left:10px;
-	margin-top:20px;
+	margin-left:5px;
+	margin-top:10px;
 	color: #000000;
 }
 
-.revisa_variables{
+.grafico_cantidad_kpi_2{
 	position: absolute;
-	margin-left:45%;
-	margin-top: 0px;
-	color:#000000;
-	font-size: 30px;
-	font-family: Arimo 
+	margin-left:5px;
+	margin-top:210px;
+	color: #000000;
 }
+
+.grafico_features{
+	position: absolute;
+	margin-left:5px;
+	margin-top:10px;
+	color: #000000;
+}
+
 
 .custom-dropdown{
 	position: absolute;
@@ -709,44 +771,31 @@
 
 }
 
-.custom-dropdown2{
-	position: absolute;
-	margin-top: 50px;
-	margin-left: 140px;
-}
-
-.custom-dropdown2 .dropdown-menu {
-	position: absolute;
-    background-color: #f3e9d2; /* Color de fondo */
-    color: #000000; /* Color del texto */
-    font-size: 14px; /* Tamaño del texto */
-    width: 300px; /* Ancho del dropdown */
-    border: 1px solid #dfd1a7; /* Color del borde */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Sombra */
-}
-
-.custom-dropdown2 .dropdown-item {
-    padding: 10px; /* Espaciado interno de los items */
-}
-
-.custom-dropdown2 .dropdown-item:hover {
-    background-color: #dfd1a7; /* Color de fondo al pasar el mouse */
-    color: #000000; /* Color del texto al pasar el mouse */
-}
-
-.custom-dropdown2 .dropdown-toggle {
-    background-color: #948F8F; /* Color de fondo del botón del dropdown */
-    color: #FFFFFF; /* Color del texto del botón del dropdown */
-    border-color: #000000; /* Color del borde del botón del dropdown */
-
-}
 
 .Revisar_panel{
 	position: absolute;
-	margin-left:1000px;
-	margin-top: 400px;
+	margin-left:950px;
+	margin-top: -100px;
 	color:#000000;
 	font-size: 20px;
+	font-family: Arimo 
+}
+
+.impo_variables{
+	position: absolute;
+	margin-left:150px;
+	margin-top: 0px;
+	color: #000000;
+	font-size: 25px;
+	font-family: Arimo 
+}
+
+.limi_variables{
+	position: absolute;
+	margin-left:750px;
+	margin-top: 0px;
+	color: #000000;
+	font-size: 25px;
 	font-family: Arimo 
 }
 

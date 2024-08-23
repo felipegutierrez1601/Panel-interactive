@@ -36,33 +36,19 @@ def create_layout(app):
     principal= html.Div([
 
         dbc.Card([html.Div([
-            dcc.Link('Macerado/Torno', href='/Recomendacion',className= "mace_torno")
+            dcc.Link('Chapa', href='/Recomendacion',className= "mace_torno_secado")
                             ],className = 'mace_torno_div'),
         dcc.Link('Recomendación', href='/Recomendacion',className= "_recomendacion"),
         dcc.Link('Simulación', href='/Simulacion',className= "_simulacion"),
         dcc.Link('Refuerzo', href='/Refuerzo',className= "_refuerzo"),
         ], className = "principal_card_1"),
         dbc.Card([html.Div([
-            dcc.Link('Secado', href='/Recomendacion',className= "secado")
+            dcc.Link('Tablero', href='/Recomendacion',className= "enco_empaque")
                             ], className = 'secado_div'),
         dcc.Link('Recomendación', href='/Recomendacion',className= "_recomendacion"),
         dcc.Link('Simulación', href='/Simulacion',className= "_simulacion"),
         dcc.Link('Refuerzo', href='/Refuerzo',className= "_refuerzo"),
         ], className = "principal_card_2"),
-        dbc.Card([html.Div([
-            dcc.Link('Encolado', href='/Recomendacion',className= "encolado")
-                            ],className = 'encolado_div'),
-        dcc.Link('Recomendación', href='/Recomendacion',className= "_recomendacion"),
-        dcc.Link('Simulación', href='/Simulacion',className= "_simulacion"),
-        dcc.Link('Refuerzo', href='/Refuerzo',className= "_refuerzo"),
-        ], className = "principal_card_3"),
-        dbc.Card([html.Div([
-            dcc.Link('Prensa/Tablero', href='/Recomendacion',className= "prensa")
-                            ],className = 'prensa_div'),
-        dcc.Link('Recomendación', href='/Recomendacion',className= "_recomendacion"),
-        dcc.Link('Simulación', href='/Simulacion',className= "_simulacion"),
-        dcc.Link('Refuerzo', href='/Refuerzo',className= "_refuerzo"),
-        ], className = "principal_card_4"),
         html.Div(className="Logo_UBB"),
         html.Div(className="Logo_Arauco"),
         html.Div(className="Logo_ANID"),
