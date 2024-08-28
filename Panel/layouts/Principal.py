@@ -43,11 +43,11 @@ def create_layout(app):
         dcc.Link('Refuerzo', href='/Refuerzo',className= "_refuerzo"),
         ], className = "principal_card_1"),
         dbc.Card([html.Div([
-            dcc.Link('Tablero', href='/Recomendacion',className= "enco_empaque")
+            dcc.Link('Tablero', href='/Recomendacion_tablero',className= "enco_empaque")
                             ], className = 'secado_div'),
-        dcc.Link('Recomendación', href='/Recomendacion',className= "_recomendacion"),
-        dcc.Link('Simulación', href='/Simulacion',className= "_simulacion"),
-        dcc.Link('Refuerzo', href='/Refuerzo',className= "_refuerzo"),
+        dcc.Link('Recomendación', href='/Recomendacion_tablero',className= "_recomendacion"),
+        dcc.Link('Simulación', href='/Simulacion_tablero',className= "_simulacion"),
+        dcc.Link('Refuerzo', href='/Refuerzo_tablero',className= "_refuerzo"),
         ], className = "principal_card_2"),
         html.Div(className="Logo_UBB"),
         html.Div(className="Logo_Arauco"),

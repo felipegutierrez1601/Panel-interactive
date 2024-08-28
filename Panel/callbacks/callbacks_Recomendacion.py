@@ -31,31 +31,33 @@ def register_callbacks_layout1(app):
 
 
 
-    def grafico_importancia(x_data,y_data,z_data):
+    def grafico_importancia(x_data,y_data,z_data,direccion,lado,empuje):
         colors = ['#08AA49' if x > 0 else '#D20101' for x in x_data]
         garfico_features = go.Figure(data=[
                 go.Bar(name='Cumple', x=z_data.abs(), y=y_data, marker_color = colors,orientation='h')])
         garfico_features.update_traces(marker_line_width=1.5, opacity=1)
         garfico_features.update_layout(
-            xaxis_title='Porcentaje por objetivo %',
+            xaxis_title=empuje,
             showlegend=False,
             margin=dict(l=0, r=0, t=30, b=0),  # Elimina márgenes
             paper_bgcolor='rgba(0,0,0,0)',  # Fondo del contenedor transparente
-            plot_bgcolor='#E0DEDE',   # Fondo de la gráfica transparente
+            plot_bgcolor='#121420',   # Fondo de la gráfica transparente
             xaxis=dict(
                 showline=True,  # Elimina la línea del eje x
-                zeroline=True   # Elimina la línea cero
+                zeroline=True,   # Elimina la línea cero
+                autorange=direccion
             ),
             yaxis=dict(
                 showline=True,  # Elimina la línea del eje y
-                zeroline=True   # Elimina la línea cero
+                zeroline=True,   # Elimina la línea cero
+                side=lado
             ),
-            width=500,height=310,
+            width=500,height=240,
 
             font=dict(
                 family="Arimo ",   # Fuente del texto
                 size=10,          # Tamaño del texto
-                color="#000000"     # Color del texto
+                color="#FFFFFF"     # Color del texto
             ),
             barmode='group')
         return garfico_features
@@ -157,7 +159,7 @@ def register_callbacks_layout1(app):
                 showlegend=False,
                 margin=dict(l=0, r=0, t=30, b=0),  # Elimina márgenes
                 paper_bgcolor='rgba(0,0,0,0)',  # Fondo del contenedor transparente
-                plot_bgcolor='#E0DEDE',   # Fondo de la gráfica transparente
+                plot_bgcolor='#121420',   # Fondo de la gráfica transparente
                 xaxis=dict(
                     showline=True,  # Elimina la línea del eje x
                     zeroline=True   # Elimina la línea cero
@@ -171,12 +173,12 @@ def register_callbacks_layout1(app):
                 font=dict(
                     family="Arimo ",   # Fuente del texto
                     size=10,          # Tamaño del texto
-                    color="#000000"     # Color del texto
+                    color="#FFFFFF"     # Color del texto
                 ),
                 title={
-                    'text': 'Calidad',
+                    'text': 'Predicción Calidad',
                     'font': {'size': 15},
-                    'x': 0.5,  # Centramos el título
+                    'x': 0.55,  # Centramos el título
                     'xanchor': 'center'  # Alineación del título en el centro
                         },
                 barmode='group')
@@ -191,7 +193,7 @@ def register_callbacks_layout1(app):
                 showlegend=False,
                 margin=dict(l=0, r=0, t=30, b=0),  # Elimina márgenes
                 paper_bgcolor='rgba(0,0,0,0)',  # Fondo del contenedor transparente
-                plot_bgcolor='#E0DEDE',   # Fondo de la gráfica transparente
+                plot_bgcolor='#121420',   # Fondo de la gráfica transparente
                 xaxis=dict(
                     showline=True,  # Elimina la línea del eje x
                     zeroline=True   # Elimina la línea cero
@@ -205,39 +207,39 @@ def register_callbacks_layout1(app):
                 font=dict(
                     family="Arimo ",   # Fuente del texto
                     size=10,          # Tamaño del texto
-                    color="#000000"     # Color del texto
+                    color="#FFFFFF"     # Color del texto
                 ),
                 barmode='group')
             return [garfico_cantidad,garfico_cantidad_2]
 
     @app.callback(
-        [Output('Estado_s24', 'children'),
-        Output('Estado_s24', 'color'),
-        Output('Estado_s15', 'children'),
-        Output('Estado_s15', 'color'),
-        Output('Estado_s18', 'children'),
-        Output('Estado_s18', 'color'),
-        Output('Estado_chapa', 'children'),
-        Output('Estado_chapa', 'color'),
-        Output('Estado_clear', 'children'),
-        Output('Estado_clear', 'color')],
+        [
+        Output('Estado_s24', 'style'),
+        Output('Estado_s15', 'style'),
+        Output('Estado_s18', 'style'),
+        Output('Estado_chapa', 'style'),
+        Output('Estado_clear', 'style')],
         [Input('intervalo', 'interval')])
+
     def update_graph(*args):
         consulta = f"""
-            SELECT TOP 1 calidad_chapa_s24,calidad_chapa_s18,calidad_chapa_s15,calidad_chapa_general,rendimiento_clear
+            SELECT TOP 1 calidad_chapa_s24, calidad_chapa_s18, calidad_chapa_s15, calidad_chapa_general, rendimiento_clear
             FROM Lecturas_Resultados
-            order by TS DESC
-            """
-        Df = load_data(consulta,'UBB')
+            ORDER BY TS DESC
+        """
+        Df = load_data(consulta, 'UBB')
+        
         if not Df.empty:
-            return  ((['Cumple', '#08AA49'] if Df['calidad_chapa_s24'].fillna('0').iloc[-1] == 'cumple' else ['No Cumple', '#D20101']) +
-                    (['Cumple', '#08AA49'] if Df['calidad_chapa_s15'].fillna('0').iloc[-1] == 'cumple' else ['No Cumple', '#D20101'])  +
-                    (['Cumple', '#08AA49'] if Df['calidad_chapa_s18'].fillna('0').iloc[-1] == 'cumple' else ['No Cumple', '#D20101'])  +
-                    (['Cumple', '#08AA49'] if Df['calidad_chapa_general'].fillna('0').iloc[-1] == 'cumple' else ['No Cumple', '#D20101']) +
-                    (['Cumple', '#08AA49'] if Df['rendimiento_clear'].fillna('0').iloc[-1] == 'cumple' else ['No Cumple', '#D20101']))
-
+            return [
+                {"backgroundColor": "#08AA49"} if Df['calidad_chapa_s24'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#D20101"},
+                {"backgroundColor": "#08AA49"} if Df['calidad_chapa_s15'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#D20101"},
+                {"backgroundColor": "#08AA49"} if Df['calidad_chapa_s18'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#D20101"},
+                {"backgroundColor": "#08AA49"} if Df['calidad_chapa_general'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#D20101"},
+                {"backgroundColor": "#08AA49"} if Df['rendimiento_clear'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#D20101"}
+            ]
         else:
-            return ['No Data','secondary']* 5
+            return {"backgroundColor": "#08AA49"} * 5
+
 
 
 
@@ -267,7 +269,8 @@ def register_callbacks_layout1(app):
 
     @app.callback(
         [Output('Va_importantes', 'figure'),
-        Output('tabla_rangos', 'data')],
+        Output('tabla_rangos', 'data'),
+        Output('Va_importantes_2', 'figure')],
         #Output('Revisar_s24', 'n_clicks'),
         #Output('Revisar_s18', 'n_clicks'),
         #Output('Revisar_s15', 'n_clicks'),
@@ -302,10 +305,14 @@ def register_callbacks_layout1(app):
             if int(s18) > -10:
                 total_positivo = feature_tablero[feature_tablero['Valor_Shap'] > 0]['Valor_Shap'].sum()
                 total_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]['Valor_Shap'].sum()
-                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))     
-                garfico_features = grafico_importancia(feature_tablero['Valor_Shap'],feature_tablero['Variable_Shap'],feature_tablero['porcentaje'])
+                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))
+                dataset_positivo = feature_tablero[feature_tablero['Valor_Shap'] >= 0]
+                dataset_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]
+
+                garfico_positivo = grafico_importancia(dataset_positivo['Valor_Shap'],dataset_positivo['Variable_Shap'],dataset_positivo['porcentaje'],True,'right',f'% Empuje Positivo')
+                garfico_negativo = grafico_importancia(dataset_negativo['Valor_Shap'],dataset_negativo['Variable_Shap'],dataset_negativo['porcentaje'],'reversed','left',f'% Empuje Negativo')
                 datos = sharp('S18_Shap')
-                return [garfico_features,datos]
+                return [garfico_negativo,datos,garfico_positivo]
 
 
         elif button_id == 'Revisar_s24' :
@@ -319,10 +326,14 @@ def register_callbacks_layout1(app):
             if int(s24) >= 0:
                 total_positivo = feature_tablero[feature_tablero['Valor_Shap'] > 0]['Valor_Shap'].sum()
                 total_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]['Valor_Shap'].sum()
-                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))     
-                garfico_features = grafico_importancia(feature_tablero['Valor_Shap'],feature_tablero['Variable_Shap'],feature_tablero['porcentaje'])
+                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))
+                dataset_positivo = feature_tablero[feature_tablero['Valor_Shap'] >= 0]
+                dataset_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]
+
+                garfico_positivo = grafico_importancia(dataset_positivo['Valor_Shap'],dataset_positivo['Variable_Shap'],dataset_positivo['porcentaje'],True,'right',f'% Empuje Positivo')
+                garfico_negativo = grafico_importancia(dataset_negativo['Valor_Shap'],dataset_negativo['Variable_Shap'],dataset_negativo['porcentaje'],'reversed','left',f'% Empuje Negativo')
                 datos = sharp('S24_Shap')
-                return [garfico_features,datos] 
+                return [garfico_negativo,datos,garfico_positivo]
 
 
         elif button_id == 'Revisar_s15':
@@ -336,10 +347,14 @@ def register_callbacks_layout1(app):
             if int(s15) >= 0:
                 total_positivo = feature_tablero[feature_tablero['Valor_Shap'] > 0]['Valor_Shap'].sum()
                 total_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]['Valor_Shap'].sum()
-                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))     
-                garfico_features = grafico_importancia(feature_tablero['Valor_Shap'],feature_tablero['Variable_Shap'],feature_tablero['porcentaje'])
+                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))
+                dataset_positivo = feature_tablero[feature_tablero['Valor_Shap'] >= 0]
+                dataset_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]
+
+                garfico_positivo = grafico_importancia(dataset_positivo['Valor_Shap'],dataset_positivo['Variable_Shap'],dataset_positivo['porcentaje'],True,'right',f'% Empuje Positivo')
+                garfico_negativo = grafico_importancia(dataset_negativo['Valor_Shap'],dataset_negativo['Variable_Shap'],dataset_negativo['porcentaje'],'reversed','left',f'% Empuje Negativo')
                 datos = sharp('S15_Shap')
-                return [garfico_features,datos]
+                return [garfico_negativo,datos,garfico_positivo]
 
         elif button_id == 'Revisar_chapa':
             consulta = f"""
@@ -352,10 +367,14 @@ def register_callbacks_layout1(app):
             if int(chapa) > 0:
                 total_positivo = feature_tablero[feature_tablero['Valor_Shap'] > 0]['Valor_Shap'].sum()
                 total_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]['Valor_Shap'].sum()
-                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))     
-                garfico_features = grafico_importancia(feature_tablero['Valor_Shap'],feature_tablero['Variable_Shap'],feature_tablero['porcentaje'])
+                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))
+                dataset_positivo = feature_tablero[feature_tablero['Valor_Shap'] >= 0]
+                dataset_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]
+
+                garfico_positivo = grafico_importancia(dataset_positivo['Valor_Shap'],dataset_positivo['Variable_Shap'],dataset_positivo['porcentaje'],True,'right',f'% Empuje Positivo')
+                garfico_negativo = grafico_importancia(dataset_negativo['Valor_Shap'],dataset_negativo['Variable_Shap'],dataset_negativo['porcentaje'],'reversed','left',f'% Empuje Negativo')
                 datos = sharp('chapa_G_Shap')
-                return [garfico_features,datos] 
+                return [garfico_negativo,datos,garfico_positivo] 
 
         elif button_id == 'Revisar_clear':
             consulta = f"""
@@ -367,10 +386,14 @@ def register_callbacks_layout1(app):
             if int(clear) > 0:
                 total_positivo = feature_tablero[feature_tablero['Valor_Shap'] > 0]['Valor_Shap'].sum()
                 total_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]['Valor_Shap'].sum()
-                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))     
-                garfico_features = grafico_importancia(feature_tablero['Valor_Shap'],feature_tablero['Variable_Shap'],feature_tablero['porcentaje'])
-                datos = sharp('tabla_sharp')
-                return [garfico_features,datos]  
+                feature_tablero['porcentaje'] = feature_tablero.apply(calcular_porcentaje, axis=1,args=(total_positivo, total_negativo))
+                dataset_positivo = feature_tablero[feature_tablero['Valor_Shap'] >= 0]
+                dataset_negativo = feature_tablero[feature_tablero['Valor_Shap'] < 0]
+
+                garfico_positivo = grafico_importancia(dataset_positivo['Valor_Shap'],dataset_positivo['Variable_Shap'],dataset_positivo['porcentaje'],True,'right',f'% Empuje Positivo')
+                garfico_negativo = grafico_importancia(dataset_negativo['Valor_Shap'],dataset_negativo['Variable_Shap'],dataset_negativo['porcentaje'],'reversed','left',f'% Empuje Negativo')
+                datos = sharp('S15_Shap')
+                return [garfico_negativo,datos,garfico_positivo]  
 
         else:
             return dash.no_update
@@ -389,10 +412,6 @@ def register_callbacks_layout1(app):
 
     def abrir_pagina(revisar,s24_count,s18_count,s15_count,chapa_count,clear_count):
 
-        print('El s18 Antes: ',s18_count)
-        print('El s15 Antes: ',s15_count)
-        print('El s24 Antes: ',s24_count)
-
         if not s18_count != None:
             s18_count = 0
         if not s24_count != None:
@@ -403,11 +422,6 @@ def register_callbacks_layout1(app):
             chapa_count = 0
         if not clear_count != None:
             clear_count = 0
-
-        print('El s18 Despues: ',s18_count)
-        print('El s15 Despues: ',s15_count)
-        print('El s24 Despues: ',s24_count)
-
 
         s18 = [s18_count,"https://lalagos.grafana.net/d/Secado_Secador_18-250724_v/secador-18?var-G1_Proceso=&var-G1_Maquina=&var-G1_Variable=&from=now-1h&to=now&timezone=browser"]
         s15 = [s15_count,"https://lalagos.grafana.net/d/Secado_Secador_15-250724_v/secador-15?var-G1_Proceso=&var-G1_Maquina=&var-G1_Variable=&from=now-1h&to=now&timezone=browser"]
@@ -425,4 +439,34 @@ def register_callbacks_layout1(app):
        
         else:
             return dash.no_update
+
+
+    @app.callback(
+    [Output('titulo_variables', 'children'),
+     Output('titulo_variables', 'style')],
+    [Input('Revisar_s24', 'n_clicks'),
+     Input('Revisar_s18', 'n_clicks'),
+     Input('Revisar_s15', 'n_clicks'),
+     Input('Revisar_chapa', 'n_clicks'),
+     Input('Revisar_clear', 'n_clicks')])
+    def update_graph(Revisar_S24,Revisar_S18,Revisar_S15,Revisar_chapa,Revisar_clear):
+        ctx = dash.callback_context
+        button_id = ctx.triggered[0]['prop_id'].split('.')[0]
+
+        if button_id == 'Revisar_s18':
+            return 'Importancia Variables S18',{'margin-left': 400}
+        elif button_id == 'Revisar_s24':
+            return 'Importancia Variables S24',{'margin-left': 400}
+        elif button_id == 'Revisar_s15':
+            return 'Importancia Variables S15',{'margin-left': 400}
+        elif button_id == 'Revisar_chapa':
+            return 'Importancia Variables Secado General',{'margin-left': 370}
+        elif button_id == 'Revisar_clear':
+            return 'Importancia Variables Rendimiento Clear',{'margin-left': 370}
+
+
+
+        
+
+       
         

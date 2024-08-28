@@ -197,7 +197,7 @@
     border-color: black; /* Ajusta el color según sea necesario */
     width: 1536px;
     height: 5%;
-    background-color: #9AC4EE;
+    background-color: #1B1C22;
 
 }
 
@@ -210,9 +210,9 @@
     color: #C0C6C3;
     margin-top:2px ;
     padding: 2px 5px;
-    background-color: #9AC4EE; /* Fondo celeste */
+    background-color: #504F4F; /* Fondo celeste */
     border-radius: 15px; /* Esquinas curvas */
-    border: 2px solid #000000;
+    border: 2px solid #FFFFFF;
      
 }
 
@@ -223,12 +223,26 @@
     font-family: Scene; 
     margin-top:2px;
     padding: 2px 5px;
-    background-color: #FFFFFF; /* Fondo celeste */
+    background-color: #504F4F; /* Fondo celeste */
     border-radius: 15px; /* Esquinas curvas */
-    border: 2px solid #000000;
+    border: 2px solid #FFFFFF;
 }
 
+.link:hover {
+    background-color: #FFFFFF; /* Cambia el color de fondo al pasar el ratón por encima */
+}
 
+.link span {
+    color: #FF0000; /* Cambia el color del texto dentro de un <span> a rojo */
+}
+
+.link2:hover {
+    background-color: #FFFFFF; /* Cambia el color de fondo al pasar el ratón por encima */
+}
+
+.link2 span {
+    color: #FF0000; /* Cambia el color del texto dentro de un <span> a rojo */
+}
 
 
 .recomendacion_card_1 {
@@ -238,19 +252,19 @@
 	height: 250px;
 	width: 300px;
 	margin-right: 1%;
-	background-color: #FFFFFF;
+	background-color: #121420;
 	overflow-y:hidden;
 	border: none;
 }
 
 .recomendacion_card_2 {
 	position: absolute;
-	margin-left: 400px;
+	margin-left: 370px;
 	margin-right: 5%;
 	margin-top: 3%;
 	height: 140px;
-	width: 380px;
-	background-color: #FFFFFF;
+	width: 180px;
+	background-color: #121420;
 	border-width: 1px; /* Ajusta este valor al grosor deseado */
     border-style: solid;
     border-color: black; /* Ajusta el color según sea necesario */
@@ -258,12 +272,12 @@
 
 .recomendacion_card_3 {
 	position: absolute;
-	margin-left: calc((100% - 1440px) / 2 + 740px);
-	margin-right: 5%;
+	margin-left: 565px;
+	margin-right: 0%;
 	margin-top: 3%;
 	height: 140px;
-	width: 380px;
-	background-color: #FFFFFF;
+	width: 180px;
+	background-color: #121420;
 	border-width: 1px; /* Ajusta este valor al grosor deseado */
     border-style: solid;
     border-color: black; /* Ajusta el color según sea necesario */
@@ -271,12 +285,12 @@
 
 .recomendacion_card_4 {
 	position: absolute;
-	margin-left: calc((100% - 1440px) / 2 + 1130px);
+	margin-left: 760px;
 	margin-right: 5%;
 	margin-top: 3%;
 	height: 140px;
-	width: 350px;
-	background-color: #FFFFFF;
+	width: 180px;
+	background-color: #121420;
 	border-width: 1px; /* Ajusta este valor al grosor deseado */
     border-style: solid;
     border-color: black; /* Ajusta el color según sea necesario */
@@ -284,12 +298,12 @@
 
 .recomendacion_card_5 {
 	position: absolute;
-	margin-left: 400px;
+	margin-left: 955px;
 	margin-right: 5%;
-	margin-top: 12.5%;
+	margin-top: 3%;
 	height: 140px;
-	width: 380px;
-	background-color: #FFFFFF;
+	width: 180px;
+	background-color: #121420;
 	border-width: 1px; /* Ajusta este valor al grosor deseado */
     border-style: solid;
     border-color: black; /* Ajusta el color según sea necesario */
@@ -297,12 +311,12 @@
 
 .recomendacion_card_6 {
 	position: absolute;
-	margin-left: calc((100% - 1440px) / 2 + 740px);
+	margin-left: 1150px;
 	margin-right: 5%;
-	margin-top: 12.5%;
+	margin-top: 3%;
 	height: 140px;
-	width: 380px;
-	background-color: #FFFFFF;
+	width: 180px;
+	background-color: #000000;
 	border-width: 1px; /* Ajusta este valor al grosor deseado */
     border-style: solid;
     border-color: black; /* Ajusta el color según sea necesario */
@@ -312,9 +326,9 @@
     position: absolute;
     left: 23%;
     top: 6%;
-    width: 3px; /* Ajusta el grosor de la línea según sea necesario */
+    width: 1px; /* Ajusta el grosor de la línea según sea necesario */
     height: 75vh; /* 50% de la altura de la ventana */
-    background-color: black;
+    background-color: #FFFFFF;
 }
 
 .horizontal-line {
@@ -333,21 +347,19 @@
 	margin-top: 240px;
 	height: 465px;
 	width: 330px;
-	background-color: #FFFFFF;
-	border-width: 1px; /* Ajusta este valor al grosor deseado */
-    border-style: solid;
-    border-color: black; /* Ajusta el color según sea necesario */
+	background-color: #121420;
+	border: none;
 }
 
 .recomendacion_card_8{
 	position: absolute;
 	margin-left: 365px;
 	margin-right: 0px;
-	margin-top: 340px;
-	height: 370px;
+	margin-top: 200px;
+	height: 550px;
 	width: 1165px;
-	background-color: #FFFFFF;
-	border: none;
+	background-color: #121420;
+	border: None;
 	
 }
 
@@ -357,7 +369,7 @@
 	position: absolute;
 	margin-left:630px;
 	margin-top: 780px;
-	color: #000000;
+	color: #FFFFFF;
 	font-size: 15px;
 	font-family: Arimo 
 }
@@ -366,7 +378,7 @@
 	position: absolute;
 	margin-left:630px;
 	margin-top: 800px;
-	color: #000000;
+	color: #FFFFFF;
 	font-size: 15px;
 	font-family: Arimo 
 }
@@ -375,7 +387,7 @@
 	position: absolute;
 	margin-left:1300px;
 	margin-top: 800px;
-	color: #000000;
+	color: #FFFFFF;
 	font-size: 13px;
 	font-family: Arimo 
 }
@@ -537,7 +549,7 @@
 	position: absolute;
 	margin-left:120px;
 	margin-top: 0px;
-	color: #000000;
+	color: #FFFFFF;
 	font-size: 20px;
 	font-family: Arimo 
 }
@@ -546,17 +558,17 @@
 	position: absolute;
 	margin-left:125px;
 	margin-top: 110px;
-	color: #000000;
+	color: #FFFFFF;
 	font-size: 20px;
 	font-family: Arimo 
 }
 
 .nombre_S24{
 	position: absolute;
-	margin-left:110px;
+	margin-left:10px;
 	margin-top: 0px;
-	color: #000000;
-	font-size: 30px;
+	color: #FFFFFF;
+	font-size: 18px;
 	font-family: Arimo 
 }
 
@@ -592,7 +604,7 @@
 
 .Revisar_S24{
 	position: absolute;
-	margin-left:250px;
+	margin-left:70px;
 	margin-top: 85px;
 	color: #FFFFFF;
 	font-size: 13px;
@@ -602,10 +614,10 @@
 
 .nombre_S15{
 	position: absolute;
-	margin-left:110px;
+	margin-left:10px;
 	margin-top: 0px;
-	color: #000000;
-	font-size: 30px;
+	color: #FFFFFF;
+	font-size: 18px;
 	font-family: Arimo 
 }
 
@@ -621,7 +633,7 @@
 
 .Revisar_S15{
 	position: absolute;
-	margin-left:250px;
+	margin-left:70px;
 	margin-top: 85px;
 	color: #FFFFFF;
 	font-size: 13px;
@@ -631,10 +643,10 @@
 
 .nombre_S18{
 	position: absolute;
-	margin-left:110px;
+	margin-left:10px;
 	margin-top: 0px;
-	color: #000000;
-	font-size: 30px;
+	color: #FFFFFF;
+	font-size: 18px;
 	font-family: Arimo 
 }
 
@@ -650,7 +662,7 @@
 
 .Revisar_S18{
 	position: absolute;
-	margin-left:250px;
+	margin-left:70px;
 	margin-top: 85px;
 	color: #FFFFFF;
 	font-size: 13px;
@@ -660,10 +672,10 @@
 
 .nombre_chapa{
 	position: absolute;
-	margin-left:100px;
+	margin-left:10px;
 	margin-top: 0px;
-	color: #000000;
-	font-size: 30px;
+	color: #FFFFFF;
+	font-size: 18px;
 	font-family: Arimo 
 }
 
@@ -680,7 +692,7 @@
 
 .Revisar_Chapa{
 	position: absolute;
-	margin-left:250px;
+	margin-left:70px;
 	margin-top: 85px;
 	color: #FFFFFF;
 	font-size: 13px;
@@ -690,10 +702,10 @@
 
 .nombre_clear{
 	position: absolute;
-	margin-left:70px;
+	margin-left:10px;
 	margin-top: 0px;
-	color: #000000;
-	font-size: 30px;
+	color: #FFFFFF;
+	font-size: 18px;
 	font-family: Arimo 
 }
 
@@ -709,7 +721,7 @@
 
 .Revisar_Clear{
 	position: absolute;
-	margin-left:250px;
+	margin-left:70px;
 	margin-top: 85px;
 	color: #FFFFFF;
 	font-size: 13px;
@@ -731,9 +743,23 @@
 	color: #000000;
 }
 
-.grafico_features{
+.grafico_cantidad_kpi_tablero{
 	position: absolute;
 	margin-left:5px;
+	margin-top:50px;
+	color: #000000;
+}
+
+.grafico_features{
+	position: absolute;
+	margin-left:73px;
+	margin-top:10px;
+	color: #000000;
+}
+
+.grafico_features2{
+	position: absolute;
+	margin-left:570px;
 	margin-top:10px;
 	color: #000000;
 }
@@ -774,18 +800,18 @@
 
 .Revisar_panel{
 	position: absolute;
-	margin-left:950px;
-	margin-top: -100px;
-	color:#000000;
+	margin-left:1380px;
+	margin-top: 100px;
+	color:#FFFFFF;
 	font-size: 20px;
 	font-family: Arimo 
 }
 
 .impo_variables{
 	position: absolute;
-	margin-left:150px;
+	margin-left:450px;
 	margin-top: 0px;
-	color: #000000;
+	color: #FFFFFF;
 	font-size: 25px;
 	font-family: Arimo 
 }
@@ -794,7 +820,7 @@
 	position: absolute;
 	margin-left:750px;
 	margin-top: 0px;
-	color: #000000;
+	color: #FFFFFF;
 	font-size: 25px;
 	font-family: Arimo 
 }
