@@ -195,7 +195,9 @@ def create_layout(app):
                         style_header = {"background-color": "#343434", "color": "#FFFFFF", "text-align": "center"},
                         style_data={'border': '1px solid #FFFFFF'},
                         style_data_conditional=[{'if': {'row_index': 'odd'},  # Apply zebra striping
-                                            'backgroundColor': '#000000'}],
+                                                'backgroundColor': '#000000'},
+                                                {'if': {'ID_tabla_jerarquia_porcentaje': 'Porcentaje Objetivo'},  # Apply zebra striping
+                                                'width': '100px'}],
                         page_action='none',),
             dcc.Location(id="url2", refresh=True)]
             ), className = "recomendacion_card_8"),

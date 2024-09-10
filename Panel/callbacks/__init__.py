@@ -1,6 +1,7 @@
 from dash.dependencies import Input, Output
 from layouts import Principal, Recomendacion, Refuerzo,Simulacion, Recomendacion_tablero,Refuerzo_tablero,Simulacion_tablero
 
+
 import pandas as pd
 
 

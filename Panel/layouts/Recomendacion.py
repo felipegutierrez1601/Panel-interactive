@@ -42,8 +42,8 @@ muestras = ['Calidad S24','Calidad S15','Calidad S18']
 muestras_2=['Calidad Secado', 'Rendimiento Clear']
 
 garfico_cantidad = go.Figure(data=[
-    go.Bar(name='Cumple', x=muestras, y=[0, 0, 0], marker_color = "#08AA49"),
-    go.Bar(name='No Cumple', x=muestras, y=[0, 0, 0], marker_color = '#D20101')])
+    go.Bar(name='Cumple', x=muestras, y=[0, 0, 0], marker_color = "#79af61"),
+    go.Bar(name='No Cumple', x=muestras, y=[0, 0, 0], marker_color = '#ca3013')])
 
 garfico_cantidad.update_traces(marker_line_width=1.5, opacity=1)
 
@@ -77,8 +77,8 @@ garfico_cantidad.update_layout(
     barmode='group')
 
 garfico_cantidad_2 = go.Figure(data=[
-    go.Bar(name='Cumple', x=muestras_2, y=[0, 0], marker_color = "#08AA49"),
-    go.Bar(name='No Cumple', x=muestras_2, y=[0, 0], marker_color = '#D20101')])
+    go.Bar(name='Cumple', x=muestras_2, y=[0, 0], marker_color = "#79af61"),
+    go.Bar(name='No Cumple', x=muestras_2, y=[0, 0], marker_color = '#ca3013')])
 
 garfico_cantidad_2.update_traces(marker_line_width=1.5, opacity=1)
 
@@ -261,14 +261,29 @@ def create_layout(app):
             dcc.Graph(id='Va_importantes',config = {"displayModeBar": False},figure = garfico_features,className = 'grafico_features'),
             dcc.Graph(id='Va_importantes_2',config = {"displayModeBar": False},figure = garfico_features2,className = 'grafico_features2'),
             html.Div(id='output-container'),  # Placeholder para mostrar salida seleccionada
-            dash_table.DataTable(id= 'tabla_rangos',data = datos,sort_action="native" ,columns=[{"name": "Porcentaje Objetivo", "id": "ID_tabla_jerarquia_porcentaje"},{"name": "Objetivo", "id": "ID_tabla_objetivo"},{"name": "Variable", "id": "ID_tabla_variable"},{"name": "Máquina", "id": "ID_tabla_maquina"},{"name": "Valor", "id": "ID_tabla_valor"},{"name": "Limite inferior", "id": "ID_tabla_inferior"},{"name": "Limite superior", "id": "ID_tabla_superior"},{"name": "UOM", "id": "ID_tabla_uom"}],
+            dash_table.DataTable(id= 'tabla_rangos',data = datos ,columns=[{"name": "Porcentaje Objetivo", "id": "ID_tabla_jerarquia_porcentaje"},{"name": "Objetivo", "id": "ID_tabla_objetivo"},{"name": "Variable", "id": "ID_tabla_variable"},{"name": "Máquina", "id": "ID_tabla_maquina"},{"name": "Valor", "id": "ID_tabla_valor"},{"name": "Limite inferior", "id": "ID_tabla_inferior"},{"name": "Limite superior", "id": "ID_tabla_superior"},{"name": "UOM", "id": "ID_tabla_uom"}],
                         style_table={'height': '272px', "width": "1000px","position": "absolute", "margin-left": "80px", "margin-right": "1px", "margin-top": "260px", 'overflowY': 'auto'},
                         style_cell = {'border': '2px solid #FFFFFF ',"background-color": "#121420", "font-size": "13px", "color": "#FFFFFF", "text-align": "center"},
-                        style_header = {"background-color": "#343434", "color": "#FFFFFF", "text-align": "center"},
+                        style_header = {"background-color": "#343434", "color": "#FFFFFF", "text-align": "center",'overflowY': 'auto', 'overflowX': 'auto'},
                         style_data={'border': '1px solid #FFFFFF'},
                         style_data_conditional=[{'if': {'row_index': 'odd'},  # Apply zebra striping
-                                            'backgroundColor': '#000000'}],
-                        page_action='none',),
+                                            'backgroundColor': '#000000'},
+                                            {'if': {'column_id': 'ID_tabla_jerarquia_porcentaje'},  # Apply zebra striping
+                                                'width': '150px'},
+                                            {'if': {'column_id':'ID_tabla_uom'},  # Apply zebra striping
+                                                'width': '50px'},
+                                            {'if': {'column_id':'ID_tabla_variable'},  # Apply zebra striping
+                                                'width': '150px'},
+                                            {'if': {'column_id':'ID_tabla_objetivo'},  # Apply zebra striping
+                                                'width': '100px'},
+                                            {'if': {'column_id':'ID_tabla_maquina'},  # Apply zebra striping
+                                                'width': '80px'},
+                                            {'if': {'column_id':'ID_tabla_valor'},  # Apply zebra striping
+                                                'width': '100px'},   ],
+                        page_action='none',
+                        sort_action='native',
+                        sort_mode='multi',
+                        fixed_rows={'headers': True}),
             dcc.Location(id="url2", refresh=True)]
             ), className = "recomendacion_card_8"),
         html.Div(className="Logo_UBB"),

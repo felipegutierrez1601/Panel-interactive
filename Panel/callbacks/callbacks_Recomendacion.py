@@ -12,10 +12,10 @@ def register_callbacks_layout1(app):
         mi_conexion = pyodbc.connect(
                     Trusted_Connection='No',
                     Authentication='ActiveDirectoryPassword',
-                    UID='',
-                    PWD= '',
+                    UID='Felipe',
+                    PWD= 'Fondef',
                     Driver='{SQL Server}',
-                    Server='',
+                    Server='146.83.131.135',
                     Database=database)
         data = pd.read_sql(consulta, mi_conexion)
         return data
@@ -32,7 +32,7 @@ def register_callbacks_layout1(app):
 
 
     def grafico_importancia(x_data,y_data,z_data,direccion,lado,empuje):
-        colors = ['#08AA49' if x > 0 else '#D20101' for x in x_data]
+        colors = ['#79af61' if x > 0 else '#ca3013' for x in x_data]
         garfico_features = go.Figure(data=[
                 go.Bar(name='Cumple', x=z_data.abs(), y=y_data, marker_color = colors,orientation='h')])
         garfico_features.update_traces(marker_line_width=1.5, opacity=1)
@@ -98,7 +98,7 @@ def register_callbacks_layout1(app):
                         GROUP BY ID_Variable
                     ) AS latest ON l.ID_Variable = latest.ID_Variable AND l.TS = latest.MaxTS
                     CROSS JOIN Totales t
-                    ORDER BY ROUND(s.Valor_Shap, 2) DESC;"""
+                    ORDER BY ROUND(s.Valor_Shap, 2) ASC;"""
 
         data = load_data(consulta,'Arauco')
         data = data.to_dict(orient='records')
@@ -141,15 +141,15 @@ def register_callbacks_layout1(app):
         if start_date > end_date:
             start_date, end_date = end_date, start_date
             consulta = f"""
-            SELECT calidad_chapa_general,rendimiento_clear,calidad_chapa_s24,calidad_chapa_s18,calidad_chapa_s15
+            SELECT calidad_chapa_general,calidad_chapa_s24,calidad_chapa_s18,calidad_chapa_s15,rendimiento_clear
             FROM Lecturas_Resultados
             WHERE TS BETWEEN '{start_date}' AND '{end_date}'
             """
             cantidad = load_data(consulta,'UBB')
             
             garfico_cantidad = go.Figure(data=[
-            go.Bar(name='Cumple', x=['Calidad S24','Calidad S15','Calidad S18'], y=[cantidad[cantidad['calidad_chapa_s24'] == 'cumple'].shape[0],cantidad[cantidad['calidad_chapa_s15'] == 'cumple'].shape[0], cantidad[cantidad['calidad_chapa_s18'] == 'cumple'].shape[0] ], marker_color = "#08AA49"),
-            go.Bar(name='No Cumple', x=['Calidad S24','Calidad S15','Calidad S18'], y=[cantidad[cantidad['calidad_chapa_s24'] == 'No cumple'].shape[0],cantidad[cantidad['calidad_chapa_s15'] == 'No cumple'].shape[0], cantidad[cantidad['calidad_chapa_s18'] == 'No cumple'].shape[0] ], marker_color = "#D20101"),
+            go.Bar(name='Cumple', x=['Calidad S24','Calidad S15','Calidad S18'], y=[cantidad[cantidad['calidad_chapa_s24'] == 'cumple'].shape[0],cantidad[cantidad['calidad_chapa_s15'] == 'cumple'].shape[0], cantidad[cantidad['calidad_chapa_s18'] == 'cumple'].shape[0] ], marker_color = "#79af61"),
+            go.Bar(name='No Cumple', x=['Calidad S24','Calidad S15','Calidad S18'], y=[cantidad[cantidad['calidad_chapa_s24'] == 'No cumple'].shape[0],cantidad[cantidad['calidad_chapa_s15'] == 'No cumple'].shape[0], cantidad[cantidad['calidad_chapa_s18'] == 'No cumple'].shape[0] ], marker_color = "#ca3013"),
             ])
 
             garfico_cantidad.update_traces(marker_line_width=1.5, opacity=1)
@@ -183,8 +183,8 @@ def register_callbacks_layout1(app):
                         },
                 barmode='group')
             garfico_cantidad_2 = go.Figure(data=[
-            go.Bar(name='Cumple', x=['Calidad Secado', 'Rendimiento Clear'], y=[cantidad[cantidad['calidad_chapa_general'] == 'cumple'].shape[0],cantidad[cantidad['rendimiento_clear'] == 'cumple'].shape[0] ], marker_color = "#08AA49"),
-            go.Bar(name='No Cumple', x=['Calidad Secado', 'Rendimiento Clear'], y=[cantidad[cantidad['calidad_chapa_general'] == 'No cumple'].shape[0],cantidad[cantidad['rendimiento_clear'] == 'No cumple'].shape[0] ], marker_color = "#D20101")])
+            go.Bar(name='Cumple', x=['Calidad Secado', 'Rendimiento Clear'], y=[cantidad[cantidad['calidad_chapa_general'] == 'cumple'].shape[0],cantidad[cantidad['rendimiento_clear'] == 'cumple'].shape[0] ], marker_color = "#79af61"),
+            go.Bar(name='No Cumple', x=['Calidad Secado', 'Rendimiento Clear'], y=[cantidad[cantidad['calidad_chapa_general'] == 'No cumple'].shape[0],cantidad[cantidad['rendimiento_clear'] == 'No cumple'].shape[0] ], marker_color = "#ca3013")])
 
             garfico_cantidad_2.update_traces(marker_line_width=1.5, opacity=1)
 
@@ -219,7 +219,7 @@ def register_callbacks_layout1(app):
         Output('Estado_s18', 'style'),
         Output('Estado_chapa', 'style'),
         Output('Estado_clear', 'style')],
-        [Input('intervalo', 'interval')])
+        [Input('intervalo', 'n_intervals')])
 
     def update_graph(*args):
         consulta = f"""
@@ -231,11 +231,11 @@ def register_callbacks_layout1(app):
         
         if not Df.empty:
             return [
-                {"backgroundColor": "#08AA49"} if Df['calidad_chapa_s24'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#D20101"},
-                {"backgroundColor": "#08AA49"} if Df['calidad_chapa_s15'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#D20101"},
-                {"backgroundColor": "#08AA49"} if Df['calidad_chapa_s18'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#D20101"},
-                {"backgroundColor": "#08AA49"} if Df['calidad_chapa_general'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#D20101"},
-                {"backgroundColor": "#08AA49"} if Df['rendimiento_clear'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#D20101"}
+                {"backgroundColor": "#79af61"} if Df['calidad_chapa_s24'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#ca3013"},
+                {"backgroundColor": "#79af61"} if Df['calidad_chapa_s15'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#ca3013"},
+                {"backgroundColor": "#79af61"} if Df['calidad_chapa_s18'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#ca3013"},
+                {"backgroundColor": "#79af61"} if Df['calidad_chapa_general'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#ca3013"},
+                {"backgroundColor": "#79af61"} if Df['rendimiento_clear'].fillna('0').iloc[-1] == 'cumple' else {"backgroundColor": "#ca3013"}
             ]
         else:
             return {"backgroundColor": "#08AA49"} * 5
@@ -378,9 +378,10 @@ def register_callbacks_layout1(app):
 
         elif button_id == 'Revisar_clear':
             consulta = f"""
-                SELECT feature,importance
-                FROM Tabla_features
-                order by importance asc
+                SELECT Variable_Shap,
+                Valor_Shap
+                FROM chapa_G_clear_Shap 
+                order by ABS(Valor_Shap) asc
                 """
             feature_tablero = load_data(consulta,'Arauco')
             if int(clear) > 0:
@@ -392,7 +393,7 @@ def register_callbacks_layout1(app):
 
                 garfico_positivo = grafico_importancia(dataset_positivo['Valor_Shap'],dataset_positivo['Variable_Shap'],dataset_positivo['porcentaje'],True,'right',f'% Empuje Positivo')
                 garfico_negativo = grafico_importancia(dataset_negativo['Valor_Shap'],dataset_negativo['Variable_Shap'],dataset_negativo['porcentaje'],'reversed','left',f'% Empuje Negativo')
-                datos = sharp('S15_Shap')
+                datos = sharp('chapa_G_clear_Shap')
                 return [garfico_negativo,datos,garfico_positivo]  
 
         else:
@@ -423,14 +424,16 @@ def register_callbacks_layout1(app):
         if not clear_count != None:
             clear_count = 0
 
-        s18 = [s18_count,"https://lalagos.grafana.net/d/Secado_Secador_18-250724_v/secador-18?var-G1_Proceso=&var-G1_Maquina=&var-G1_Variable=&from=now-1h&to=now&timezone=browser"]
-        s15 = [s15_count,"https://lalagos.grafana.net/d/Secado_Secador_15-250724_v/secador-15?var-G1_Proceso=&var-G1_Maquina=&var-G1_Variable=&from=now-1h&to=now&timezone=browser"]
-        s24 = [s24_count,"https://lalagos.grafana.net/d/Secado_Secador_24-250724_v/secador-24?var-G1_Proceso=&var-G1_Maquina=&var-G1_Variable=&from=now-1h&to=now&timezone=browser"]
+        s18 = [s18_count,"https://lalagos.grafana.net/d/Varshap-040924_vs18/varshap-secador-s18?var-G1_Proceso=&var-G1_Maquina=&var-G1_Variable=&var-G1_Variable_UOM=&from=2024-08-31T14:19:42.270Z&to=2024-08-31T15:18:52.077Z&timezone=browser&kiosk="]
+        s15 = [s15_count,"https://lalagos.grafana.net/d/Varshap-040924_vs15/varshap-secador-s15?kiosk=&from=2024-08-31T14:19:42.270Z&to=2024-08-31T15:18:52.077Z&timezone=browser"]
+        s24 = [s24_count,"https://lalagos.grafana.net/d/Varshap-040924_vs24/varshap-secador-s24?from=2024-08-31T14:19:42.270Z&to=2024-08-31T15:18:52.077Z&timezone=browser&kiosk="]
+        chapa = [chapa_count,"https://lalagos.grafana.net/d/Varshap-040924_vs24/varshap-secador-s24?from=2024-08-31T14:19:42.270Z&to=2024-08-31T15:18:52.077Z&timezone=browser&kiosk="]
 
         activar = {}
         activar['s18'] = s18
         activar['s15'] = s15
         activar['s24'] = s24
+        activar['chapa'] = chapa
 
         if revisar != None:
             max_key = max(activar, key=lambda k: activar[k][0])

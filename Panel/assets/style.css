@@ -825,6 +825,243 @@
 	font-family: Arimo 
 }
 
+.tarjeta_simu_1 {
+	position: absolute;
+	margin-left: calc((100% - 1440px) / 2);
+	margin-right: 5%;
+	margin-top: 3%;
+	height: 710px;
+	width: 1440px;
+	background-color: #121420;
+	overflow-y:hidden;
+	/* Ajusta el color según sea necesario */
+
+}
+
+.simulacion_card_2 {
+	position: absolute;
+	margin-left: 245px;
+	margin-right: 5%;
+	margin-top: 1%;
+	height: 70px;
+	width: 180px;
+	background-color: #121420;
+	border-width: 2px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: #000000; /* Ajusta el color según sea necesario */
+    cursor: pointer
+}
+
+.simulacion_card_3 {
+	position: absolute;
+	margin-left: 440px;
+	margin-right: 5%;
+	margin-top: 1%;
+	height: 70px;
+	width: 180px;
+	background-color: #121420;
+	border-width: 2px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: #000000; /* Ajusta el color según sea necesario */
+    cursor: pointer
+}
+
+.simulacion_card_4 {
+	position: absolute;
+	margin-left: 635px;
+	margin-right: 5%;
+	margin-top: 1%;
+	height: 70px;
+	width: 180px;
+	background-color: #121420;
+	border-width: 2px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: #000000; /* Ajusta el color según sea necesario */
+    cursor: pointer
+}
+
+.simulacion_card_5 {
+	position: absolute;
+	margin-left: 830px;
+	margin-right: 5%;
+	margin-top: 1%;
+	height: 70px;
+	width: 180px;
+	background-color: #121420;
+	border-width: 2px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: #000000; /* Ajusta el color según sea necesario */
+    cursor: pointer
+}
+
+.simulacion_card_6 {
+	position: absolute;
+	margin-left: 1025px;
+	margin-right: 5%;
+	margin-top: 1%;
+	height: 70px;
+	width: 180px;
+	background-color: #121420;
+	border-width: 2px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: #000000; /* Ajusta el color según sea necesario */
+    cursor: pointer
+}
+
+.simulacion_card_7 {
+	position: absolute;
+	margin-left: 1220px;
+	margin-right: 5%;
+	margin-top: 10%;
+	height: 40px;
+	width: 110px;
+	background-color: #504F4F;
+	border-width: 2px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: #000000; /* Ajusta el color según sea necesario */
+    cursor: pointer
+}
+
+.simulacion_card_8 {
+	position: absolute;
+	margin-left: 1180px;
+	margin-right: 5%;
+	margin-top: 13%;
+	height: 100px;
+	width: 200px;
+	background-color: #504F4F80;
+	border-width: 2px; /* Ajusta este valor al grosor deseado */
+    border-style: solid;
+    border-color: #000000; /* Ajusta el color según sea necesario */
+    cursor: pointer
+}
+
+.simulacion_card_2:hover {
+    background-color: #FFFFFF80; /* Cambia el color de fondo al pasar el ratón por encima */
+}
+
+.simulacion_card_3:hover {
+    background-color: #FFFFFF80; /* Cambia el color de fondo al pasar el ratón por encima */
+}
+
+.simulacion_card_4:hover {
+    background-color: #FFFFFF80; /* Cambia el color de fondo al pasar el ratón por encima */
+}
+
+.simulacion_card_4:hover {
+    background-color: #FFFFFF80; /* Cambia el color de fondo al pasar el ratón por encima */
+}
+
+.simulacion_card_5:hover {
+    background-color: #FFFFFF80; /* Cambia el color de fondo al pasar el ratón por encima */
+}
+
+.simulacion_card_6:hover {
+    background-color: #FFFFFF80; /* Cambia el color de fondo al pasar el ratón por encima */
+}
+
+
+.sound-slider .rc-slider {
+    height: 50%;              /* Usa todo el contenedor verticalmente */
+    width: 10px;               /* Hacemos el slider más estrecho */
+    background-color: #FFFFFF80;    /* Fondo del slider */
+    border-radius: 5px;        /* Bordes redondeados para suavizar */
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 55%;
+}
+
+.sound-slider .rc-slider-handle {
+	margin-left: 0px;
+    background-color: #007bff; /* Color del handle (indicador) */
+    border: 0px solid #fff;     /* Borde del handle */
+    width: 10px;               /* Tamaño del handle */
+    height: 10px;              /* Hacemos que el handle sea más ancho que el slider */
+    border-radius: 5px;        /* Bordes redondeados del handle */
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0); /* Sombra para el handle */
+}
+
+.sound-slider .rc-slider-track {
+	margin-left: -2px;
+    background-color: #000DFF80; /* Color de la pista activa */
+    width: 5px;               /* Misma anchura que el slider */
+}
+
+.sound-slider .rc-slider-rail {
+    background-color: #e0e0e0; /* Color de la pista inactiva */
+    width: 0px;               /* Misma anchura que el slider */
+}
+
+.tarjeta_control {
+	
+	margin-right: 5%;
+	margin-top: 0%;
+	height: 290px;
+	width: 135px;
+	background-color: #121420;
+	 /* Ajusta el color según sea necesario */
+    cursor: pointer;
+    
+}
+
+.control_panel1 {
+	
+	margin-left: 4%;
+	margin-right: 5%;
+	margin-top: 6.5%;
+	height: 295px;
+	width: 1050px;
+	background-color: #121420;
+	 /* Ajusta el color según sea necesario */
+    cursor: pointer;
+    overflow-y:hidden;
+    
+
+
+    
+}
+
+.control_panel2 {
+	
+	margin-left: 4%;
+	margin-right: 0%;
+	margin-top: 0.5%;
+	height: 300px;
+	width: 1350px;
+	background-color: #121420;
+	 /* Ajusta el color según sea necesario */
+    cursor: pointer;
+     overflow-y:hidden;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .TABS{
