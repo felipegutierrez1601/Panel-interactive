@@ -208,11 +208,12 @@
     margin-left: 43%;
     font-family: Scene; 
     color: #C0C6C3;
-    margin-top:2px ;
+    margin-top:70px ;
     padding: 2px 5px;
     background-color: #504F4F; /* Fondo celeste */
     border-radius: 15px; /* Esquinas curvas */
     border: 2px solid #FFFFFF;
+    width:160px;
      
 }
 
@@ -221,11 +222,12 @@
     font-size: 1px;
     margin-left: 100px;
     font-family: Scene; 
-    margin-top:2px;
+    margin-top:140px;
     padding: 2px 5px;
     background-color: #504F4F; /* Fondo celeste */
     border-radius: 15px; /* Esquinas curvas */
     border: 2px solid #FFFFFF;
+    width:160px;
 }
 
 .link:hover {
@@ -259,7 +261,7 @@
 
 .recomendacion_card_2 {
 	position: absolute;
-	margin-left: 370px;
+	margin-left: 545px; /* 370px */
 	margin-right: 5%;
 	margin-top: 3%;
 	height: 140px;
@@ -268,11 +270,14 @@
 	border-width: 1px; /* Ajusta este valor al grosor deseado */
     border-style: solid;
     border-color: black; /* Ajusta el color según sea necesario */
+    cursor: pointer;
+    transition: 400ms;
+
 }
 
 .recomendacion_card_3 {
 	position: absolute;
-	margin-left: 565px;
+	margin-left: 740px;
 	margin-right: 0%;
 	margin-top: 3%;
 	height: 140px;
@@ -285,7 +290,7 @@
 
 .recomendacion_card_4 {
 	position: absolute;
-	margin-left: 760px;
+	margin-left: 935px;
 	margin-right: 5%;
 	margin-top: 3%;
 	height: 140px;
@@ -298,66 +303,27 @@
 
 .recomendacion_card_5 {
 	position: absolute;
-	margin-left: 955px;
+	margin-left: 1%;
 	margin-right: 5%;
-	margin-top: 3%;
-	height: 140px;
-	width: 180px;
+	margin-top: 1%;
+	height: 830px;
+	width: 350px;
 	background-color: #121420;
+	box-shadow: 15px 15px 30px #0e0f1b, -15px -15px 30px #16182b;
+	border-radius: 30px;
 	border-width: 1px; /* Ajusta este valor al grosor deseado */
     border-style: solid;
     border-color: black; /* Ajusta el color según sea necesario */
 }
 
-.recomendacion_card_6 {
-	position: absolute;
-	margin-left: 1150px;
-	margin-right: 5%;
-	margin-top: 3%;
-	height: 140px;
-	width: 180px;
-	background-color: #000000;
-	border-width: 1px; /* Ajusta este valor al grosor deseado */
-    border-style: solid;
-    border-color: black; /* Ajusta el color según sea necesario */
-}
-
-.vertical-line {
-    position: absolute;
-    left: 23%;
-    top: 6%;
-    width: 1px; /* Ajusta el grosor de la línea según sea necesario */
-    height: 75vh; /* 50% de la altura de la ventana */
-    background-color: #FFFFFF;
-}
-
-.horizontal-line {
-    position: absolute;
-    left: 1%;  /* Margen izquierdo del 5% */
-    right: 1%; /* Margen derecho del 5% */
-    top: 39%; /* Ajusta esta propiedad según sea necesario para la posición vertical */
-    height: 2px; /* Ajusta el grosor de la línea según sea necesario */
-    background-color: black;
-}
-
-.recomendacion_card_7{
-	position: absolute;
-	margin-left: 0.5%;
-	margin-right: 0px;
-	margin-top: 240px;
-	height: 465px;
-	width: 330px;
-	background-color: #121420;
-	border: none;
-}
 
 .recomendacion_card_8{
 	position: absolute;
-	margin-left: 365px;
+	margin-left: 470px;
 	margin-right: 0px;
 	margin-top: 200px;
 	height: 550px;
-	width: 1165px;
+	width: 1050px;
 	background-color: #121420;
 	border: None;
 	
@@ -394,39 +360,17 @@
 
 .Logo_UBB{
 	position: absolute;
-	left: 5%;
-	background-image:url("/assets/UBB full.png");
-	background-size: 130px 85px;
+	left: 1.2%;
+	background-image:url("/assets/imagen-final.png");
+	background-size: 350px 350px;
 	background-repeat:no-repeat;
 	background-position: left;
-	margin-top: 750px;
-	height: 100px;
-	width: 330px;
+	margin-top: 675px;
+	height: 150px;
+	width: 350px;
 }
 
-.Logo_Arauco{
-	position: absolute;
-	left: 17%;
-	background-image:url("/assets/Arauco.png");
-	background-size: 130px 20px;
-	background-repeat:no-repeat;
-	background-position: left;
-	margin-top: 750px;
-	height: 100px;
-	width: 330px;
-}
 
-.Logo_ANID{
-	position: absolute;
-	left: 30%;
-	background-image:url("/assets/ANID.png");
-	background-size: 70px 65px;
-	background-repeat:no-repeat;
-	background-position: left;
-	margin-top: 750px;
-	height: 100px;
-	width: 330px;
-}
 
 .custom-datepicker .DateInput {
     border: none; /* Elimina el borde */
@@ -752,14 +696,14 @@
 
 .grafico_features{
 	position: absolute;
-	margin-left:73px;
+	margin-left:33px;
 	margin-top:10px;
 	color: #000000;
 }
 
 .grafico_features2{
 	position: absolute;
-	margin-left:570px;
+	margin-left:530px;
 	margin-top:10px;
 	color: #000000;
 }
@@ -1126,6 +1070,13 @@
 	font-size: 10px;
 	margin-left: 0px;
 	color: #000000;
+}
+
+.CAJAS label {
+    font-size: 13px; /* Cambia este valor según tus necesidades */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+    overflow: hidden;    /* Oculta el desbordamiento de texto */
+    text-overflow: ellipsis; /* Añade "..." si el texto es demasiado largo */
 }
 
 .INDICADOR_1 {

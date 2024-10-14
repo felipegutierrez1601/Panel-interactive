@@ -25,10 +25,10 @@ def register_callbacks_layout2(app):
         mi_conexion = pyodbc.connect(
                     Trusted_Connection='No',
                     Authentication='ActiveDirectoryPassword',
-                    UID='',
-                    PWD= '',
+                    UID='Felipe',
+                    PWD= 'Fondef',
                     Driver='{SQL Server}',
-                    Server='',
+                    Server='146.83.131.135',
                     Database=database)
         data = pd.read_sql(consulta, mi_conexion)
         return data
