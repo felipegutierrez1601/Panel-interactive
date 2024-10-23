@@ -55,7 +55,7 @@ garfico_features.update_layout(
         showline=True,  # Elimina la línea del eje y
         zeroline=True   # Elimina la línea cero
     ),
-    width=500,height=240,
+    width=300,height=240,
 
     font=dict(
         family="Arimo ",   # Fuente del texto
@@ -82,7 +82,7 @@ garfico_features2.update_layout(
         showline=True,  # Elimina la línea del eje y
         zeroline=True   # Elimina la línea cero
     ),
-    width=500,height=240,
+    width=300,height=240,
 
     font=dict(
         family="Arimo ",   # Fuente del texto
@@ -157,14 +157,14 @@ def create_layout(app):
             dcc.Graph(id='Va_importantes_2',config = {"displayModeBar": False},figure = garfico_features2,className = 'grafico_features2'),
             html.Div(id='output-container'),  # Placeholder para mostrar salida seleccionada
             dash_table.DataTable(id= 'tabla_rangos',data = datos ,columns=[{"name": "Variable", "id": "ID_tabla_variable"},{"name": "Predicción", "id": "ID_tabla_objetivo"},{"name": "Importancia [%]", "id": "ID_tabla_jerarquia_porcentaje"},{"name": "Máquina", "id": "ID_tabla_maquina"},{"name": "Ult. Valor", "id": "ID_tabla_valor"},{"name": "Lim. Inferior", "id": "ID_tabla_inferior"},{"name": "Lim. Superior", "id": "ID_tabla_superior"},{"name": "Unidad", "id": "ID_tabla_uom"}],
-                        style_table={'height': '272px', "width": "1000px","position": "absolute", "margin-left": "50px", "margin-right": "1px", "margin-top": "260px", 'overflowY': 'auto'},
+                        style_table={'height': '212px', "width": "484px","position": "absolute", "margin-left": "655px", "margin-right": "0px", "margin-top": "40px", 'overflowY': 'auto'},
                         style_cell = {'border': '2px solid #FFFFFF ',"background-color": "#121420", "font-size": "13px", "color": "#FFFFFF", "text-align": "center"},
                         style_header = {"background-color": "#343434", "color": "#FFFFFF", "text-align": "center",'overflowY': 'auto', 'overflowX': 'auto'},
                         style_data={'border': '1px solid #FFFFFF'},
                         style_data_conditional=[{'if': {'row_index': 'odd'},  # Apply zebra striping
                                             'backgroundColor': '#000000'},
                                             {'if': {'column_id': 'ID_tabla_jerarquia_porcentaje'},  # Apply zebra striping
-                                                'width': '150px'},
+                                                'width': '120px'},
                                             {'if': {'column_id':'ID_tabla_uom'},  # Apply zebra striping
                                                 'width': '150px'},
                                             {'if': {'column_id':'ID_tabla_variable'},  # Apply zebra striping
@@ -183,7 +183,8 @@ def create_layout(app):
                         sort_action='native',
                         sort_mode='multi',
                         fixed_rows={'headers': True}),
-            dcc.Location(id="url2", refresh=True)]
+            dcc.Graph(id='gra_humedad_v1',config = {"displayModeBar": False},figure = garfico_features2,className = 'style_humedad_1'),
+            dcc.Graph(id='gra_calidades',config = {"displayModeBar": False},figure = garfico_features2,className = 'style_calidad'),]
             ), className = "recomendacion_card_8"),
         html.Div(className="Logo_UBB")
 

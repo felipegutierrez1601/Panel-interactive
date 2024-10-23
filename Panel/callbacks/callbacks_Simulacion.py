@@ -25,8 +25,8 @@ def register_callbacks_layout2(app):
         mi_conexion = pyodbc.connect(
                     Trusted_Connection='No',
                     Authentication='ActiveDirectoryPassword',
-                    UID='Felipe',
-                    PWD= 'Fondef',
+                    UID='',
+                    PWD= '',
                     Driver='{SQL Server}',
                     Server='146.83.131.135',
                     Database=database)

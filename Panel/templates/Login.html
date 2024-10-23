@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neumorphism Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login_styles.css') }}">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-card">
+      <h2>Iniciar Sesión </h2>
+      <img src="https://arauco.com/chile/wp-content/uploads/sites/14/2019/04/logo-arauco.png" alt="Logo" class="logo">
+
+      <h3>Arauco</h3>
+      
+
+      <!-- Mostrar mensajes de error -->
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div style="color: red;">
+            <ul>
+              {% for message in messages %}
+                <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <!-- Formulario de inicio de sesión -->
+      <form method="POST">
+        <div class="input-group">
+          <input type="text" name="usuario" placeholder="Usuario" required>
+        </div>
+        <div class="input-group">
+          <input type="password" name="password" placeholder="Contraseña" required>
+        </div>
+        <button type="submit" class="btn">Iniciar Sesión</button>
+      </form>
+
+      <div class="login-footer">
+        <a href="#">¿No tienes una cuenta?</a>
+        <a href="#">Olvidaste los detalles</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

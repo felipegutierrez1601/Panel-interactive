@@ -319,12 +319,12 @@
 
 .recomendacion_card_8{
 	position: absolute;
-	margin-left: 470px;
+	margin-left: 380px;
 	margin-right: 0px;
 	margin-top: 200px;
-	height: 550px;
-	width: 1050px;
-	background-color: #121420;
+	height: 640px;
+	width: 1130px;
+	background-color:#121420 ;
 	border: None;
 	
 }
@@ -696,15 +696,32 @@
 
 .grafico_features{
 	position: absolute;
-	margin-left:33px;
+	margin-left:0 px;
 	margin-top:10px;
 	color: #000000;
 }
 
 .grafico_features2{
 	position: absolute;
-	margin-left:530px;
+	margin-left:310px;
 	margin-top:10px;
+	color: #000000;
+}
+
+
+
+.style_humedad_1{
+	position: absolute;
+	margin-left:0px;
+	margin-top:280px;
+	color: #000000;
+}
+
+
+.style_calidad{
+	position: absolute;
+	margin-left:580px;
+	margin-top:280px;
 	color: #000000;
 }
 
@@ -987,15 +1004,113 @@
 
 
 
+/* Contenedor del formulario */
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #121420; /* Fondo oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Tarjeta del login */
+  .login-card {
+    width: 350px;
+    padding: 40px;
+    border-radius: 20px;
+    background-color: #121420; /* Fondo oscuro */
+    box-shadow: 10px 10px 30px #0e0f1b, -10px -10px 30px #16182b; /* Sombras neumorfistas */
+    text-align: center;
+  }
+
+.logo {
+    width: 80px; /* Ajusta el tamaño según lo que necesites */
+    height: 80px; /* Ajusta el tamaño según lo que necesites */
+    border-radius: 50%; /* Mantiene la forma circular */
+    margin-bottom: 20px;
+}
 
 
 
 
+.boton_inicio {
+    width: 100%;
+    padding: 15px;
+    background-color: #ffffff; /* Azul como el de los botones */
+    border: none;
+    border-radius: 20px;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 5px 5px 15px #0e0f1b, -5px -5px 15px #16182b; /* Sombras neumorfistas */
+    transition: transform 0.3s ease;
+  }
+  
+  .boton_inicio:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Enlaces del pie del formulario */
+  .login-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .login-footer a {
+    font-size: 12px;
+    color: #888;
+    text-decoration: none;
+  }
+  
+  .login-footer a:hover {
+    color: #33a1c9; /* Azul del hover */
+  }
+
+h3 {
+    color: white; /* Texto blanco */
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+
+h2 {
+    color: #ffffff; /* Color similar al utilizado para las tarjetas */
+    margin-bottom: 30px;
+  }
+
+input {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 20px;
+    border: none;
+    background-color: #121420; /* Fondo del input oscuro */
+    box-shadow: inset 5px 5px 10px #0e0f1b, inset -5px -5px 10px #16182b; /* Sombras neumorfistas internas */
+    outline: none;
+    color: white; /* Texto blanco */
+  }
+  
+  input::placeholder {
+    color: #888;
+
+  }
 
 
-
-
-
+.cuerpo {
+    background-color: #121420; /* Fondo oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
 
 
 

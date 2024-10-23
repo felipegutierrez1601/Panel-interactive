@@ -7,13 +7,12 @@ import plotly.graph_objects as go #Módulo para crear gráficos
 import dash
 
 def register_callbacks_layout1(app):
-    #Df = None
     def load_data(consulta,database):
         mi_conexion = pyodbc.connect(
                     Trusted_Connection='No',
                     Authentication='ActiveDirectoryPassword',
-                    UID='Felipe',
-                    PWD= 'Fondef',
+                    UID='',
+                    PWD= '',
                     Driver='{SQL Server}',
                     Server='146.83.131.135',
                     Database=database)
@@ -27,6 +26,50 @@ def register_callbacks_layout1(app):
             return (row['Valor_Shap'] / total_negativo) * 100
         else:
             return 0
+
+    def grafico_humedad_calidad(datos,titulo):
+        datos_5 = datos.iloc[:, 1:]
+        datos_5['Suma_Total'] = datos_5.sum(axis=1)
+        for col in datos_5.columns:
+            datos_5[f'{col}_percent'] = datos_5[col] / datos_5['Suma_Total'] * 100
+        datos_5 = datos_5.drop(['Suma_Total','Suma_Total_percent'], axis=1)
+
+        # Crear gráfico de barras apiladas solo con los primeros 5 registros
+        fig = go.Figure()
+
+        # Añadir barras para cada columna de humedad
+        for col in datos_5.filter(like='_percent').columns:
+            fig.add_trace(go.Bar(
+                x=datos['TS'], 
+                y=datos_5[col].round(1), 
+                name=col[:-8],
+                hovertemplate='%{y:.1f}%',  # Mostrar porcentaje en el hover
+                texttemplate='%{y:.1f}%',  # Mostrar el valor en la barra
+                textposition='inside',
+                hoverinfo='text',
+                opacity=0.1
+            ))
+
+        # Establecer diseño del gráfico
+        fig.update_layout(
+            barmode='stack',  # Barras apiladas
+            title={'text': titulo, 
+                    'x': 0.5,  # Centrar el título
+                    'xanchor': 'center',
+                    'yanchor': 'top'},
+            xaxis_title='Fecha (TS)',
+            yaxis_title='% Total',
+            hovermode="x unified",  # Mostrar todas las barras al mismo tiempo al pasar el mouse
+            margin=dict(l=0, r=0, t=30, b=0),  # Elimina márgenes
+            paper_bgcolor='rgba(0,0,0,0)',  # Fondo del contenedor transparente
+            plot_bgcolor='#121420',   # Fondo de la gráfica transparente
+            width=550,height=340,
+
+            legend=dict(
+        font=dict(size=12 )))
+        fig.update_traces(marker_line_width=1.5, opacity=1)
+
+        return fig
 
 
 
@@ -52,7 +95,7 @@ def register_callbacks_layout1(app):
                 zeroline=True,   # Elimina la línea cero
                 side=lado
             ),
-            width=500,height=240,
+            width=310,height=240,
 
             font=dict(
                 family="Arimo ",   # Fuente del texto
@@ -61,6 +104,55 @@ def register_callbacks_layout1(app):
             ),
             barmode='group')
         return garfico_features
+
+    def datos_humedad(prm,sdo,trc,cto,qto):
+        consulta = f"""
+                    SELECT TOP 4 
+                    TS,
+                    {prm},
+                    {sdo},
+                    {trc},
+                    {cto},
+                    {qto}
+                FROM 
+                    Lecturas_Resultados 
+                ORDER BY 
+                    TS DESC;
+ 
+                    """
+        data = load_data(consulta,'UBB')
+        return data
+
+    def datos_calidad(calidades):
+
+        consulta = f"""
+                    SELECT TOP 4 
+                    TS,
+                    {', '.join(calidades)}
+                FROM 
+                    Lecturas_Resultados 
+                ORDER BY 
+                    TS DESC;
+ 
+                    """
+        data = load_data(consulta,'UBB')
+        data = trabajo(data)
+        return data
+
+    def trabajo(data):
+        clear = ['A','B','BR','An','BPRs']
+        ryc = ['No Info','Comp']
+        data['Chapa clear'] = data[clear].sum(axis=1)
+        data.drop(columns=clear, inplace=True)
+        data['Random-Composer'] = data[ryc].sum(axis=1)
+        data.drop(columns=ryc, inplace=True)
+        print(data.columns)
+        columns_to_exclude = ['Chapa clear', 'Random-Composer','TS']
+        data['Otras calidades'] = data.drop(columns=columns_to_exclude).sum(axis=1)
+        data.drop(columns=data.columns.difference(columns_to_exclude + ['Otras calidades']), inplace=True)
+        return data
+
+
 
     def sharp(tabla):
         consulta = f"""
@@ -182,7 +274,9 @@ def register_callbacks_layout1(app):
     @app.callback(
         [Output('Va_importantes', 'figure'),
         Output('tabla_rangos', 'data'),
-        Output('Va_importantes_2', 'figure')],
+        Output('Va_importantes_2', 'figure'),
+        Output('gra_humedad_v1', 'figure'),
+        Output('gra_calidades', 'figure')],
         #Output('Revisar_s24', 'n_clicks'),
         #Output('Revisar_s18', 'n_clicks'),
         #Output('Revisar_s15', 'n_clicks'),
@@ -221,7 +315,38 @@ def register_callbacks_layout1(app):
                 garfico_positivo = grafico_importancia(dataset_positivo['Valor_Shap'],dataset_positivo['Variable_Shap'],dataset_positivo['porcentaje'],True,'right',f'% Empuje Positivo')
                 garfico_negativo = grafico_importancia(dataset_negativo['Valor_Shap'],dataset_negativo['Variable_Shap'],dataset_negativo['porcentaje'],'reversed','left',f'% Empuje Negativo')
                 datos = sharp('S18_Shap')
-                return [garfico_negativo,datos,garfico_positivo]
+
+                list_humedades = ['Secador_18_AVG_HUMEDAD_6 AS [Menor 6%]','Secador_18_AVG_HUMEDAD_9_10 AS [Entre 6% - 8%]','Secador_18_AVG_HUMEDAD_9_10 AS [Entre 8% - 10%]','Secador_18_AVG_HUMEDAD_11_13 AS [Entre 10% - 13%]','Secador_18_AVG_HUMEDAD_14_100 AS [Mayor 14%]']
+                lista_calidades = ['Calidad_TAG_Secador_18_VDA_A AS [A]' ,
+                                    'Calidad_TAG_Secador_18_VDA_B AS [B]',
+                                    'Calidad_TAG_Secador_18_VDA_BR AS [BR]',
+                                    'Calidad_TAG_Secador_18_VDA_Bmn AS [Bmn]',
+                                    'Calidad_TAG_Secador_18_VDA_High_Face AS [High Face]',
+                                    'Calidad_TAG_Secador_18_VDA_Redry AS [Redry]',
+                                    'Calidad_TAG_Secador_18_VDA_Refeed AS [Refeed]',
+                                    'Calidad_TAG_Secador_18_VDA_Cext_H AS [Cext_H]',
+                                    'Calidad_TAG_Secador_18_VDA_Cext AS [Cext]',
+                                    'Calidad_TAG_Secador_18_VDA_An AS [An]',
+                                    'Calidad_TAG_Secador_18_VDA_Cp AS [Cp]',
+                                    'Calidad_TAG_Secador_18_VDA_BPRs AS [BPRs]',
+                                    'Calidad_TAG_Secador_18_VDA_Cint AS [Cint]',
+                                    'Calidad_TAG_Secador_18_VDA_D AS [D]',
+                                    'Calidad_TAG_Secador_18_VDA_Comp AS [Comp]',
+                                    'Calidad_TAG_Secador_18_VDA_Cp_H AS [Cp H]',
+                                    'Calidad_TAG_Secador_18_VDA_Cint_GER AS [Cint GER]',
+                                    'Calidad_TAG_Secador_18_VDA_D_GER AS [D GER]',
+                                    'Calidad_TAG_Secador_18_VDA_ITA AS [ITA]',
+                                    'Calidad_TAG_Secador_18_VDA_Cul AS [Cul]',
+                                    'Calidad_TAG_Secador_18_VDA_C AS [C]',
+                                    'Calidad_TAG_Secador_18_VDA_No_Info AS [No Info]']
+
+
+                humedades = datos_humedad(*list_humedades)
+                garfico_perfil = grafico_humedad_calidad(humedades,'Promedio Humedad Chapa Total')
+                calidades = datos_calidad(lista_calidades)
+                garfico_calidad = grafico_humedad_calidad(calidades,'Calidad Visual Chapa Total')
+
+                return [garfico_negativo,datos,garfico_positivo,garfico_perfil,garfico_calidad]
 
 
         elif button_id == 'Revisar_s24' :
@@ -242,7 +367,38 @@ def register_callbacks_layout1(app):
                 garfico_positivo = grafico_importancia(dataset_positivo['Valor_Shap'],dataset_positivo['Variable_Shap'],dataset_positivo['porcentaje'],True,'right',f'% Empuje Positivo')
                 garfico_negativo = grafico_importancia(dataset_negativo['Valor_Shap'],dataset_negativo['Variable_Shap'],dataset_negativo['porcentaje'],'reversed','left',f'% Empuje Negativo')
                 datos = sharp('S24_Shap')
-                return [garfico_negativo,datos,garfico_positivo]
+
+                list_humedades = ['Secador_24_AVG_HUMEDAD_6 AS [Menor 6%]','Secador_24_AVG_HUMEDAD_7_8 AS [Entre 6% - 8%]','Secador_24_AVG_HUMEDAD_9_10 AS [Entre 8% - 10%]','Secador_24_AVG_HUMEDAD_11_13 AS [Entre 10% - 13%]','Secador_24_AVG_HUMEDAD_14_100 AS [Mayor 14%]']
+                lista_calidades = ['Calidad_TAG_Secador_24_VDA_A AS [A]' ,
+                                    'Calidad_TAG_Secador_24_VDA_B AS [B]',
+                                    'Calidad_TAG_Secador_24_VDA_BR AS [BR]',
+                                    'Calidad_TAG_Secador_24_VDA_Bmn AS [Bmn]',
+                                    'Calidad_TAG_Secador_24_VDA_High_Face AS [High Face]',
+                                    'Calidad_TAG_Secador_24_VDA_Redry AS [Redry]',
+                                    'Calidad_TAG_Secador_24_VDA_Refeed AS [Refeed]',
+                                    'Calidad_TAG_Secador_24_VDA_Cext_H AS [Cext_H]',
+                                    'Calidad_TAG_Secador_24_VDA_Cext AS [Cext]',
+                                    'Calidad_TAG_Secador_24_VDA_An AS [An]',
+                                    'Calidad_TAG_Secador_24_VDA_Cp AS [Cp]',
+                                    'Calidad_TAG_Secador_24_VDA_BPRs AS [BPRs]',
+                                    'Calidad_TAG_Secador_24_VDA_Cint AS [Cint]',
+                                    'Calidad_TAG_Secador_24_VDA_D AS [D]',
+                                    'Calidad_TAG_Secador_24_VDA_Comp AS [Comp]',
+                                    'Calidad_TAG_Secador_24_VDA_Cp_H AS [Cp H]',
+                                    'Calidad_TAG_Secador_24_VDA_Cint_GER AS [Cint GER]',
+                                    'Calidad_TAG_Secador_24_VDA_D_GER AS [D GER]',
+                                    'Calidad_TAG_Secador_24_VDA_ITA AS [ITA]',
+                                    'Calidad_TAG_Secador_24_VDA_Cul AS [Cul]',
+                                    'Calidad_TAG_Secador_24_VDA_C AS [C]',
+                                    'Calidad_TAG_Secador_24_VDA_No_Info AS [No Info]']
+
+
+                humedades = datos_humedad(*list_humedades)
+                garfico_perfil = grafico_humedad_calidad(humedades,'Promedio Humedad Chapa Total')
+                calidades = datos_calidad(lista_calidades)
+                garfico_calidad = grafico_humedad_calidad(calidades,'Calidad Visual Chapa Total')
+
+                return [garfico_negativo,datos,garfico_positivo,garfico_perfil,garfico_calidad]
 
 
         elif button_id == 'Revisar_s15':
@@ -263,7 +419,38 @@ def register_callbacks_layout1(app):
                 garfico_positivo = grafico_importancia(dataset_positivo['Valor_Shap'],dataset_positivo['Variable_Shap'],dataset_positivo['porcentaje'],True,'right',f'% Empuje Positivo')
                 garfico_negativo = grafico_importancia(dataset_negativo['Valor_Shap'],dataset_negativo['Variable_Shap'],dataset_negativo['porcentaje'],'reversed','left',f'% Empuje Negativo')
                 datos = sharp('S15_Shap')
-                return [garfico_negativo,datos,garfico_positivo]  
+                
+                list_humedades = ['Secador_15S_AVG_HUMEDAD_6 AS [Menor 6%]','Secador_15S_AVG_HUMEDAD_9_10 AS [Entre 6% - 8%]','Secador_15S_AVG_HUMEDAD_9_10 AS [Entre 8% - 10%]','Secador_15S_AVG_HUMEDAD_11_13 AS [Entre 10% - 13%]','Secador_15S_AVG_HUMEDAD_14_100 AS [Mayor 14%]']
+                lista_calidades = ['Calidad_TAG_Secador_15_8ft_A AS [A]' ,
+                                    'Calidad_TAG_Secador_15_8ft_B AS [B]',
+                                    'Calidad_TAG_Secador_15_8ft_BR AS [BR]',
+                                    'Calidad_TAG_Secador_15_8ft_Bmn AS [Bmn]',
+                                    'Calidad_TAG_Secador_15_8ft_High_Face AS [High Face]',
+                                    'Calidad_TAG_Secador_15_8ft_Redry AS [Redry]',
+                                    'Calidad_TAG_Secador_15_8ft_Refeed AS [Refeed]',
+                                    'Calidad_TAG_Secador_15_8ft_Cext_H AS [Cext_H]',
+                                    'Calidad_TAG_Secador_15_8ft_Cext AS [Cext]',
+                                    'Calidad_TAG_Secador_15_8ft_An AS [An]',
+                                    'Calidad_TAG_Secador_15_8ft_Cp AS [Cp]',
+                                    'Calidad_TAG_Secador_15_8ft_BPRs AS [BPRs]',
+                                    'Calidad_TAG_Secador_15_8ft_Cint AS [Cint]',
+                                    'Calidad_TAG_Secador_15_8ft_D AS [D]',
+                                    'Calidad_TAG_Secador_15_8ft_Comp AS [Comp]',
+                                    'Calidad_TAG_Secador_15_8ft_Cp_H AS [Cp H]',
+                                    'Calidad_TAG_Secador_15_8ft_Cint_GER AS [Cint GER]',
+                                    'Calidad_TAG_Secador_15_8ft_D_GER AS [D GER]',
+                                    'Calidad_TAG_Secador_15_8ft_ITA AS [ITA]',
+                                    'Calidad_TAG_Secador_15_8ft_Cul AS [Cul]',
+                                    'Calidad_TAG_Secador_15_8ft_C AS [C]',
+                                    'Calidad_TAG_Secador_15_8ft_No_Info AS [No Info]']
+
+
+                humedades = datos_humedad(*list_humedades)
+                garfico_perfil = grafico_humedad_calidad(humedades,'Promedio Humedad Chapa Total')
+                calidades = datos_calidad(lista_calidades)
+                garfico_calidad = grafico_humedad_calidad(calidades,'Calidad Visual Chapa Total')
+
+                return [garfico_negativo,datos,garfico_positivo,garfico_perfil,garfico_calidad]  
 
         else:
             return dash.no_update
